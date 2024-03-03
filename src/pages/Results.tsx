@@ -75,6 +75,10 @@ const Results: React.FC = () => {
             <h1>Eye Tested: {eyeToExamine} </h1>
             <h1>Eye Strength: {eyeStrength}</h1>
             <h1>Recommended Diopter (Glasses): {diopterResult}</h1>
+            <h3>What does it mean if I cannot see 20/20 in each eye?<br/>
+   + You may need an updated glasses prescription or reading glasses.<br/>
+   + You may have an eye problem that requires the attention of your doctor.</h3>
+<h4>While these results can help you gauge your current visul acuity and changes over time, <br/>they are not a substitute for a comprehensive eye-exam performed by a trained and licensed Opthalmologist</h4>
 
           </div>
           <div className="result-button-container">
