@@ -19,7 +19,8 @@ interface LocationState {
   eyeStrength?: string;
   diopterResult?: string;
 }
-const diopters = [0.00, -0.25, -0.50, -0.75, -1.00, -1.25, -1.50, -2.50];
+const diopters = [0.00, 0.5, 1.00, 1.50, 2.00, 2.75, 4.00, 6.00];
+//const diopters = [0.00, -0.25, -0.50, -0.75, -1.00, -1.25, -1.50, -2.50];
 const eyeStrengthValues = ['20/20', '20/25', '20/30', '20/40', '20/50', '20/70', '20/100', '20/200'];
 
 const Results: React.FC = () => {
@@ -74,7 +75,7 @@ const Results: React.FC = () => {
             <h1>Test Mode: {testMode} </h1>
             <h1>Eye Tested: {eyeToExamine} </h1>
             <h1>Eye Strength: {eyeStrength}</h1>
-            <h1>Recommended Diopter (Glasses): {diopterResult}</h1>
+            <h1>Recommended Diopter (Glasses): +{diopterResult}</h1>
             <h3>What does it mean if I cannot see 20/20 in each eye?<br/>
    + You may need an updated glasses prescription or reading glasses.<br/>
    + You may have an eye problem that requires the attention of your doctor.</h3>
