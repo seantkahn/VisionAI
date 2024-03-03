@@ -26,7 +26,6 @@ import "./TestConfig.css";
 
 const TestConfig: React.FC = () => {
   const history = useHistory();
-  const [showDatePicker, setShowDatePicker] = useState(false); 
   const [testMode, setTestMode] = useState("");
   // const [wearGlasses, setWearGlasses] = useState<string>("");
   const [eyeToExamine, setEyeToExamine] = useState<string>("");
@@ -61,31 +60,7 @@ const TestConfig: React.FC = () => {
             <IonSelectOption value="Images">Shapes</IonSelectOption>
           </IonSelect>
         </IonItem>
-        {/* <IonItem onClick={() => setShowDatePicker(true)}>
-          <IonLabel position="stacked">
-            <h1 className="question">What is your birth year?</h1>
-          </IonLabel>
-          <IonInput
-            readonly
-            value={
-              birthYear ? new Date(birthYear).getFullYear().toString() : ""
-            }
-            placeholder="Select Birth Year"
-          />
-        </IonItem> */}
-        {/* <IonItem>
-          <IonLabel position="stacked">
-            <h1 className="question">Do you wear glasses?</h1>
-          </IonLabel>
-          <IonSelect
-            value={wearGlasses}
-            placeholder="Select Yes or No"
-            onIonChange={(e) => setWearGlasses(e.detail.value)}
-          >
-            <IonSelectOption value="Yes">Yes</IonSelectOption>
-            <IonSelectOption value="No">No</IonSelectOption>
-          </IonSelect>
-        </IonItem> */}
+
 
         <IonItem>
           <IonLabel position="stacked">
@@ -105,16 +80,6 @@ const TestConfig: React.FC = () => {
         <div className="padding"></div>
         <Button buttonText="Continue" onClickAction={continueToPreTest} />
 
-        {/* <IonModal
-          isOpen={showDatePicker}
-          onDidDismiss={() => setShowDatePicker(false)}
-        >
-          <IonDatetime
-            presentation="year"
-            onIonChange={handleBirthYearChange}
-          />
-          <IonButton onClick={() => setShowDatePicker(false)}>Done</IonButton>
-        </IonModal> */}
         <IonAlert
           isOpen={showAlert}
           onDidDismiss={() => setShowAlert(false)}

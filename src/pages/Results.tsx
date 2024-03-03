@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
   IonContent,
@@ -17,13 +17,29 @@ interface LocationState {
   testMode?: string;
   eyeToExamine?: string;
   eyeStrength?: string;
+  diopterResult?: string;
 }
+const diopters = [0.00, -0.25, -0.50, -0.75, -1.00, -1.25, -1.50, -2.50];
+const eyeStrengthValues = ['20/20', '20/25', '20/30', '20/40', '20/50', '20/70', '20/100', '20/200'];
 
 const Results: React.FC = () => {
   const location = useLocation<LocationState>();
   const { testMode, eyeToExamine, eyeStrength } = location.state || {};
   const history = useHistory();
   const [screenshotData, setScreenshotData] = useState<string | null>(null);
+  
+  // Function to get the corresponding diopter for a given eye strength
+  const getDiopterResult = (eyeStrength: string) => {
+    const index = eyeStrengthValues.indexOf(eyeStrength);
+    return index !== -1 ? diopters[index].toFixed(2) : null;
+  };
+  const [diopterResult, setDiopterResult] = useState<string | null>(null);
+  useEffect(() => {
+    if (eyeStrength) {
+      const result = getDiopterResult(eyeStrength);
+      setDiopterResult(result !== null ? result.toString() : "N/A");
+    }
+  }, [eyeStrength]);
 
   const takeAndSaveScreenshot = async () => {
     try {
@@ -58,6 +74,8 @@ const Results: React.FC = () => {
             <h1>Test Mode: {testMode} </h1>
             <h1>Eye Tested: {eyeToExamine} </h1>
             <h1>Eye Strength: {eyeStrength}</h1>
+            <h1>Recommended Diopter (Glasses): {diopterResult}</h1>
+
           </div>
           <div className="result-button-container">
             <button className="result-button" onClick={takeAndSaveScreenshot}>

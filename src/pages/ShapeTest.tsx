@@ -78,6 +78,8 @@ const ShapeTest: React.FC = () => {
   const [visualAcuityIndex, setVisualAcuityIndex] = useState(7);
   const visualAcuityMeasurements = [0.8, 1, 1.2, 1.5, 2, 2.8, 4, 8];
   const eyeStrengthValues = ['20/20', '20/25', '20/30', '20/40', '20/50', '20/70', '20/100', '20/200'];
+  const diopters = [0.00,-0.25,-0.50,-0.75,-1.00,-1.25,-1.50,-2.00,-2.50]; 
+
   let webkitSpeechRecognition;
 
   const getFontSizePx = (mm: number) => {
@@ -142,7 +144,8 @@ const ShapeTest: React.FC = () => {
   const endTest = () => {
     setButtonPressCount(0);
     const selectedEyeStrength = eyeStrengthValues[visualAcuityIndex];
-    history.push("./Results", { testMode, eyeToExamine, eyeStrength: selectedEyeStrength });
+    const diopterResult = diopters[visualAcuityIndex];
+    history.push("./Results", { testMode, eyeToExamine, diopter: diopterResult, eyeStrength: selectedEyeStrength });
   };
 
   const toggleListening = () => {
