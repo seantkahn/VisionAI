@@ -19,6 +19,7 @@ import {
 } from "@ionic/react";
 import { eyeOutline } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
 import Header from "../components/Header/Header";
 import Button from "../components/Button/Button";
 import Results from "./Results";
@@ -46,28 +47,72 @@ const TestConfig: React.FC = () => {
     <IonPage>
       <Header headerText="Personal Configuration"/>
       <IonContent scrollY={false}>
-      <IonItem>
+        <div className="question">
+          <h1>Test with Letters or Images?</h1>  
+        </div>
+        <div className="question-options">
+          <Row>
+              <Col>
+                <button onClick={() => setTestMode("Letters")} className={testMode === "Letters" ? "active" : ""}>
+                  <h1>Letters</h1>
+                </button>
+                
+              </Col>
+              <Col>
+                <button onClick={() => setTestMode("Images")} className={testMode === "Images" ? "active" : ""}>
+                  <h1>Images</h1>
+                </button>
+              </Col>
+            </Row>
+        </div>
+
+        <div className="question">
+          <h1>Which Eye Are You Testing?</h1>  
+        </div>
+        <div className="question-options">
+          <Row>
+              <Col>
+                <button onClick={() => setEyeToExamine("Left")} className={eyeToExamine === "Left" ? "active" : ""}>
+                  <h1>Left</h1>
+                </button>
+                
+              </Col>
+              <Col>
+                <button onClick={() => setEyeToExamine("Both")} className={eyeToExamine === "Both" ? "active" : ""}>
+                  <h1>Both</h1>
+                </button>
+              </Col>
+              <Col>
+                <button onClick={() => setEyeToExamine("Right")} className={eyeToExamine === "Right" ? "active" : ""}>
+                  <h1>Right</h1>
+                </button>
+              </Col>
+            </Row>
+        </div>
+
+       {/* OLD WAY OF DOING BUTTONS LEAVING HERE UNTIL CERTAIN NEW WAY WORKS */}
+        
+      {/* <IonItem>
           <IonLabel position="stacked">
-            <h1 className="question">Letters or Shapes?</h1>
+           
           </IonLabel>
           <IonSelect
-            label = "Letters or Shapes?"
+            label = "Letters or Images?"
             value={testMode}
-            placeholder="Select Letters or Shapes"
+            placeholder="Select Letters or Images"
             onIonChange={(e) => setTestMode(e.detail.value)}
           >
             <IonSelectOption value="Letters">Letters</IonSelectOption>
-            <IonSelectOption value="Images">Shapes</IonSelectOption>
+            <IonSelectOption value="Images">Images</IonSelectOption>
           </IonSelect>
-        </IonItem>
+        </IonItem> */}
 
-
-        <IonItem>
+        {/* <IonItem>
           <IonLabel position="stacked">
-            <h1 className="question">Which eye will you be testing?</h1>
+            
           </IonLabel>
           <IonSelect
-            label="Which eye will you be testing?"
+            label="Which eye?"
             value={eyeToExamine}
             placeholder="Select an eye"
             onIonChange={(e) => setEyeToExamine(e.detail.value)}
@@ -76,7 +121,7 @@ const TestConfig: React.FC = () => {
             <IonSelectOption value="Right Eye">Right Eye</IonSelectOption>
             <IonSelectOption value="Both">Both</IonSelectOption>
           </IonSelect>
-        </IonItem>
+        </IonItem> */}
         <div className="padding"></div>
         <Button buttonText="Continue" onClickAction={continueToPreTest} />
 

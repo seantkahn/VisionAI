@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { IonPage, IonContent, IonButton, IonIcon } from "@ionic/react";
+import { Container, Row, Col } from "react-bootstrap";
 import { eyeOutline } from "ionicons/icons";
 import { Category, DrawingUtils, FaceLandmarker, FilesetResolver } from '@mediapipe/tasks-vision';
 
@@ -144,43 +145,45 @@ const Test: React.FC = () => {
       <Header headerText="Instructions"/>
       
       <IonContent fullscreen className="ion-padding" scrollY={false}>
-        <div className="instructions-container">
-          <p className="instructions-text">
-            Hold your face in front of your webcam and tap/click the screen once or twice for live distance calculations <br />
-            <br />
-            Grant access to the webcam if
-            prompted. Face should be parallel/level with camera and environment
-            should be well lit.{" "}
-            <br />
-            If you are testing one eye, cover the eye that is not being tested. 
-            Wear glasses if you are looking to see if you need a new prescription.
-            <br />
-            You will be prompted with five letters at a time. Say the letter and wait for the results.
-            <br />
-            Ensure you are 14 inches away from the camera for correct testing conditions.
-            End the test when you can no longer read the letters or images clearly or if you cannot get 3/5 correct.
-          </p>
-        </div>
-        <Button buttonText="Continue" onClickAction={goToSampleTest}/>
-       
-        <div id="liveView" className="videoView">
-          {/* <IonButton id="webcamButton" onClick={enableCam}>
-            {webcamRunning ? "DISABLE WEBCAM" : "ENABLE WEBCAM"}
-          </IonButton> */}
-          <div style={{ position: "relative" }}>
-            <video
-              ref={webcamRef}
-              style={{ position: "absolute" }}
-              autoPlay
-              playsInline
-            ></video>
-            <canvas
-              ref={canvasRef}
-              className="output_canvas"
-              style={{ position: "absolute", left: 0, top: 0 }}
-            ></canvas>
+        <Container>
+          <div className="instructions-container">
+            <p className="instructions-text">
+              Hold your face in front of your webcam and tap/click the screen once or twice for live distance calculations 
+              <br /><br />
+              Grant access to the webcam if
+              prompted. Face should be parallel/level with camera and environment
+              should be well lit.
+              <br /><br />
+              If you are testing one eye, cover the eye that is not being tested. 
+              Wear glasses if you are looking to see if you need a new prescription.
+              <br /><br />
+              You will be prompted with five letters at a time. Say the letter and wait for the results.
+              <br /><br />
+              Ensure you are 14 inches away from the camera for correct testing conditions.
+              End the test when you can no longer read the letters or images clearly or if you cannot get 3/5 correct.
+            </p>
           </div>
-        </div>
+          <Button buttonText="Continue" onClickAction={goToSampleTest}/>
+        
+          <div id="liveView" className="videoView">
+            {/* <IonButton id="webcamButton" onClick={enableCam}>
+              {webcamRunning ? "DISABLE WEBCAM" : "ENABLE WEBCAM"}
+            </IonButton> */}
+            <div style={{ position: "relative" }}>
+              <video
+                ref={webcamRef}
+                style={{ position: "absolute" }}
+                autoPlay
+                playsInline
+              ></video>
+              <canvas
+                ref={canvasRef}
+                className="output_canvas"
+                style={{ position: "absolute", left: 0, top: 0 }}
+              ></canvas>
+            </div>
+          </div>
+        </Container>
         
       </IonContent>
     </IonPage>

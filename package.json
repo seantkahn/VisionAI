@@ -33,17 +33,18 @@
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
     "android": "^0.0.8",
+    "bootstrap": "^5.3.3",
     "capacitor-screenshot": "^5.0.0",
     "ionicons": "^7.0.0",
     "material-components-web": "^14.0.0",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.10.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4",
     "react-webcam": "^7.2.0",
     "tfjs": "^0.6.0"
-    
   },
   "devDependencies": {
     "@capacitor/cli": "^5.5.1",
@@ -53,7 +54,6 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-legacy": "^4.0.2",
-    
     "@vitejs/plugin-react": "^4.0.1",
     "cypress": "^12.7.0",
     "eslint": "^8.35.0",
