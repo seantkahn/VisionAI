@@ -44,14 +44,24 @@
 
 .question-options button {
   background-color: #FFF;
-  margin-left: 30px;
-  padding-left: 30px;
-  padding-right: 30px; 
-  margin-right: 30px;
+  margin-left: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem; 
+  margin-right: 2rem;
   border: solid 1px #000;
 }
 
 .question-options .active {
   background-color: #000; /* Set the background color for active buttons */
   color: #fff; /* Set the text color for active buttons */
+}
+
+@media (max-width: 520px) {
+  .question-options button {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
 }

@@ -16,3 +16,8 @@
     z-index:5;
     padding-bottom: env(safe-area-inset-bottom);
 }
+
+/* .camera-container {
+    display: flex;
+    justify-content: center;
+} */

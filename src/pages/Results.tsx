@@ -11,6 +11,7 @@ import Header from "../components/Header/Header";
 import { eyeOutline } from "ionicons/icons";
 import { useLocation } from "react-router-dom";
 import html2canvas from "html2canvas";
+import { Container, Row, Col } from "react-bootstrap";
 import "./Results.css";
 
 interface LocationState {
@@ -72,14 +73,40 @@ const Results: React.FC = () => {
       <IonContent className="ion-padding" scrollY={false}>
         <div className="results-container">
           <div className="screenshot" id="screenshot-content">
-            <h1>Test Mode: {testMode} </h1>
+            <div className="box-container">
+              <div className="result-box">
+                <h1>{testMode}</h1>
+                <div className="top-left-text">Test Mode:</div>
+              </div>
+              <div className="result-box">
+                <h1>{eyeToExamine}</h1>
+                <div className="top-left-text">Eye Tested:</div>
+              </div>
+              <div className="result-box">
+                <h1>{eyeStrength}</h1>
+                <div className="top-left-text">Eye Strength:</div>
+              </div>
+              <div className="result-box">
+                <h1>+{diopterResult}</h1>
+                <div className="top-left-text">Recommended<br/>Diopter:</div>
+              </div>
+            </div>
+            
+            
+
+
+
+
+
+
+            {/* <h1>Test Mode: {testMode} </h1>
             <h1>Eye Tested: {eyeToExamine} </h1>
             <h1>Eye Strength: {eyeStrength}</h1>
-            <h1>Recommended Diopter (Glasses): +{diopterResult}</h1>
-            <h3>What does it mean if I cannot see 20/20 in each eye?<br/>
+            <h1>Recommended Diopter (Glasses): +{diopterResult}</h1> */}
+            {/* <h3>What does it mean if I cannot see 20/20 in each eye?<br/>
    + You may need an updated glasses prescription or reading glasses.<br/>
    + You may have an eye problem that requires the attention of your doctor.</h3>
-<h4>While these results can help you gauge your current visul acuity and changes over time, <br/>they are not a substitute for a comprehensive eye-exam performed by a trained and licensed Opthalmologist</h4>
+<h4>While these results can help you gauge your current visul acuity and changes over time, <br/>they are not a substitute for a comprehensive eye-exam performed by a trained and licensed Opthalmologist</h4> */}
 
           </div>
           <div className="result-button-container">

@@ -179,7 +179,7 @@ const Test: React.FC = () => {
               <canvas
                 ref={canvasRef}
                 className="output_canvas"
-                style={{ position: "absolute", left: 0, top: 0 }}
+                // style={{ position: "absolute", left: 0, top: 0 }}
               ></canvas>
             </div>
           </div>

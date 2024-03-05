@@ -1,6 +1,6 @@
-.results-container {
+/* .results-container {
   margin-top: 200px;
-}
+} */
 
 .result-button-container {
     display: flex;
@@ -29,6 +29,64 @@
     margin-left: auto;
   }
 
-  .screenshot {
-    margin-left: 25px;
+  /* .test-mode {
+    display: flex;
+    justify-content: center;
+    width: 75%;
+    margin-right: 100px;
+  }
+
+  .test-mode h1 {
+    font-weight: bold;
+    font-size: 50px;
+    border: 1px solid #000;
+    border-radius: 25px;
+    padding-left: 20vw;
+    padding-right: 20vw;
+    padding-top: 5vw;
+    padding-bottom: 5vw;
+  }
+
+  .test-mode p {
+    position: relative;
+    left: 100px;
+    top: 20px;
+  } */
+
+  .box-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .result-box {
+    position: relative; /* Set position to relative */
+    justify-content: center;
+    align-items: center;
+    width: 350px; /* Adjust width as needed */
+    height: 80px; /* Adjust height as needed */
+    border: 2px solid black; /* Border style */
+    border-radius: 20px;
+    margin: 10px; /* Add margin to separate boxes */
+    box-sizing: border-box; /* Include border in width and height */
+  }
+  
+  .result-box h1 {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 100%;
+    font-weight: bold;
+  }
+  
+  /* Add style for the text in the top-left corner */
+  .result-box .top-left-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10px; /* Adjust margin as needed */
+    font-size: 14px; /* Adjust font size as needed */
+    font-weight: bold;
   }

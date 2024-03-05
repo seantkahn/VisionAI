@@ -1,25 +1,9 @@
-.webcam {
-  position: absolute;
+/* .webcam {
+  display: flex;
   top: 0;
   justify-content: center;
-}
-.distance-button-div button {
-  top: 400px;
-  z-index: 2; /* Ensure it's above the canvas and webcam */
+} */
 
-  padding-left: 100px;
-  padding-right: 100px;
-  padding-bottom: env(safe-area-inset-bottom); /* For iOS Safari */
-  z-index: 10;
-}
-.output_canvas {
-z-index: 5;
-position: relative;
-
-}
-.webcam{
-  z-index: 1;
-}
 /* Adjusting button container for better mobile responsiveness */
 
   /* left: -120px; /
@@ -75,16 +59,11 @@ Button {
 } */
 
 
-
-
-
-
-
 /* 
 .PreTest {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Full viewport height 
+  height: 100vh;
 }
 
 .webcam, .output_canvas {
