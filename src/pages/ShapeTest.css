@@ -67,7 +67,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 360px;
 }
 
 .speech-button h1 {
@@ -90,7 +90,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 360px;
 }
 
 .speech-next-button h1 {
@@ -109,7 +109,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 360px;
 }
 
 .speech-end-button h1 {
@@ -131,4 +131,10 @@
 
 .speech-end-button-container {
   margin-bottom: 30px;
+}
+
+.shape-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
