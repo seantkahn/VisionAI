@@ -23,7 +23,7 @@
 
 .testText {
   display: flex;
-  margin-top: 50px;
+  margin-top: 25px;
   /* font-size: 70px; */
   font-weight: bold;
   text-align: center;
@@ -150,4 +150,39 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.keyboard-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.keyboard-row button {
+  width: 58px;
+  height: 58px;
+  background-color: #000;
+  color: #FFF;
+  border: 1px solid #FFF;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.keyboard-row p {
+  justify-content: center;
+  text-align: center;
+  vertical-align: center;
+}
+
+.keyboard-row:not(:first-of-type) {
+  margin-top: 5px;
+}
+
+@media (max-width: 550px) {
+  .keyboard-row button {
+    margin-left: 2px;
+    margin-right: 2px;
+  }
 }

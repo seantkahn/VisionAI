@@ -170,10 +170,20 @@ const LetterTest: React.FC = () => {
     }
   };
 
+  const handleLetterButtonClick = (letter: string) => {
+    const updatedRandomString = randomString.map((obj) =>
+      obj.letter === letter ? { ...obj, recognized: true } : obj
+    );
+    setRandomString(updatedRandomString);
+  };
+
   return (
     <IonPage>
       <Header headerText="Vision Test" />
       <IonContent className="ion-padding" scrollY={false}>
+        <IonText style={{ textAlign: "center" }}>
+          <h1 style={{fontWeight: "bold"}}>Letter Test: {buttonPressCount}/7</h1>
+        </IonText>
         <IonText className="testText" style={{ fontSize: `${fontSizePx}px` }}>
           {randomString.map((obj, index) => (
             <span
@@ -205,9 +215,30 @@ const LetterTest: React.FC = () => {
             </button>
           </div>
         </div>
-        <IonText style={{ textAlign: "center" }}>
-          <h1>Letter Test: {buttonPressCount}/7</h1>
-        </IonText>
+
+        <div className="keyboard-container">
+          <div className="keyboard-row">
+            {Array.from("QWERTYUIOP").map((letter, index) => (
+              <button key={index} onClick={() => handleLetterButtonClick(letter)}>
+                <p>{letter}</p>
+              </button>
+            ))}
+          </div>
+          <div className="keyboard-row">
+            {Array.from("ASDFGHJKL").map((letter, index) => (
+              <button key={index} onClick={() => handleLetterButtonClick(letter)}>
+                <p>{letter}</p>
+              </button>
+            ))}
+          </div>
+          <div className="keyboard-row">
+            {Array.from("ZXCVBNM").map((letter, index) => (
+              <button key={index} onClick={() => handleLetterButtonClick(letter)}>
+                <p>{letter}</p>
+              </button>
+            ))}
+          </div>
+        </div>
       </IonContent>
     </IonPage>
   );

@@ -80,6 +80,17 @@ const ShapeTest: React.FC = () => {
   const eyeStrengthValues = ['20/20', '20/25', '20/30', '20/40', '20/50', '20/70', '20/100', '20/200'];
   //const diopters = [0.00,-0.25,-0.50,-0.75,-1.00,-1.25,-1.50,-2.00,-2.50]; 
   const diopters = [0.00, 0.5, 1.00, 1.50, 2.00, 2.75, 4.00, 6.00];
+  const icons = [
+    { icon: <CiApple />, keyword: "apple" },
+    { icon: <PiBirdBold />, keyword: "bird" },
+    { icon: <FaSailboat />, keyword: "boat" },
+    { icon: <PiButterflyLight />, keyword: "butterfly" },
+    { icon: <FaCarSide />, keyword: "car" },
+    { icon: <GiSittingDog />, keyword: "dog" },
+    { icon: <FaCat />, keyword: "cat" },
+    { icon: <FaHorse />, keyword: "horse" },
+    { icon: <WiTrain />, keyword: "train" },
+  ];
 
   let webkitSpeechRecognition;
 
@@ -174,10 +185,20 @@ const ShapeTest: React.FC = () => {
     }
   };
 
+  const handleIconClick = (keyword: string) => {
+    const updatedRandomString = randomString.map((obj) =>
+      obj.keyword === keyword ? { ...obj, recognized: true } : obj
+    );
+    setRandomString(updatedRandomString);
+  };
+
   return (
     <IonPage>
       <Header headerText="Vision Test" />
       <IonContent className="ion-padding" scrollY={false}>
+        <IonText style={{ textAlign: "center" }}>
+          <h1 style={{fontWeight: "bold"}}>Shape Test: {buttonPressCount}/7</h1>
+        </IonText>
         <IonText className="testIcon" style={{ fontSize: `${fontSizePx}px` }}>
           <div className="icons-div">
             {randomString.map((obj, index) => (
@@ -217,11 +238,16 @@ const ShapeTest: React.FC = () => {
               <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
             </button>
           </div>
+          <div className="shape-container">
+            <div className="shape-row">
+              {icons.map((obj, index) => (
+                <button key={index} onClick={() => handleIconClick(obj.keyword)}>
+                  {obj.icon}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
-
-        <IonText style={{ textAlign: "center" }}>
-          <h1>Shape Test: {buttonPressCount}/7</h1>
-        </IonText>
       </IonContent>
     </IonPage>
   );
