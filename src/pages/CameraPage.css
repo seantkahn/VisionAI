@@ -1,14 +1,3 @@
-/* .distance-button {
-    margin-top: -85px;
-}
-
-.distance-button button {
-    padding-left: 100px;
-    padding-right: 100px;
-    padding-bottom: 30px;
-    padding-top: 20px;
-    margin: 5px;
-} */
 .continue-button-div button {
     top: 370px;
     padding-left: 100px;
@@ -16,8 +5,3 @@
     z-index:5;
     padding-bottom: env(safe-area-inset-bottom);
 }
-
-/* .camera-container {
-    display: flex;
-    justify-content: center;
-} */

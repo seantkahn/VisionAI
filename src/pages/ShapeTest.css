@@ -149,14 +149,20 @@
   justify-content: center;
 }
 
+.shape-row:last-of-type {
+  margin-top: 20px;
+
+}
+
 .shape-row button {
   width: 58px;
   height: 58px;
-  background-color: #000;
-  color: #FFF;
-  border: 1px solid #FFF;
+  background-color: #FFF;
+  color: #000;
+  border: 1px solid #000;
   border-radius: 4px;
   font-weight: bold;
+  font-size: 40px;
   margin-left: 5px;
   margin-right: 5px;
 }

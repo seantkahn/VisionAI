@@ -170,17 +170,16 @@ const Test: React.FC = () => {
               {webcamRunning ? "DISABLE WEBCAM" : "ENABLE WEBCAM"}
             </IonButton> */}
             <div style={{ position: "relative" }}>
-              <video
+              {/* <video
                 ref={webcamRef}
                 style={{ position: "absolute" }}
                 autoPlay
                 playsInline
-              ></video>
-              <canvas
+              ></video> */}
+              {/* <canvas
                 ref={canvasRef}
                 className="output_canvas"
-                // style={{ position: "absolute", left: 0, top: 0 }}
-              ></canvas>
+              ></canvas> */}
             </div>
           </div>
         </Container>

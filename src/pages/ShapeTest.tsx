@@ -239,15 +239,22 @@ const ShapeTest: React.FC = () => {
             </button>
           </div>
           <div className="shape-container">
-            <div className="shape-row">
-              {icons.map((obj, index) => (
-                <button key={index} onClick={() => handleIconClick(obj.keyword)}>
-                  {obj.icon}
-                </button>
-              ))}
-            </div>
+          <div className="shape-row">
+            {icons.slice(0, 5).map((obj, index) => (
+              <button key={index} onClick={() => handleIconClick(obj.keyword)}>
+                {obj.icon}
+              </button>
+            ))}
+          </div>
+          <div className="shape-row">
+            {icons.slice(5).map((obj, index) => (
+              <button key={index} onClick={() => handleIconClick(obj.keyword)}>
+                {obj.icon}
+              </button>
+            ))}
           </div>
         </div>
+      </div>
       </IonContent>
     </IonPage>
   );

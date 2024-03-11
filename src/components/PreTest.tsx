@@ -182,12 +182,11 @@ const PreTest: React.FC = () => {
         let distanceFromWebcamInches = distanceFromWebcamMm / 25.4;
         // console.log(`Distance from webcam: ${distanceFromWebcamInches.toFixed(2)} inches`);
           try{
-        canvasCtx.font = '22px Arial';
-        canvasCtx.fillStyle = 'Yellow';
+        canvasCtx.font = 'bold 22px Arial';
+        canvasCtx.fillStyle = 'White';
         canvasCtx.save(); // Save the current state
         // canvasCtx.scale(-1, 1); // Flip the context horizontally
         // canvasCtx.translate(-canvas.width, 0); // Translate the canvas context
-  
         canvasCtx.clearRect(0, 0, 200, 50); // Clear a rectangle for the text
         canvasCtx.fillText(`Distance: ${distanceFromWebcamInches.toFixed(2)} inches`, 10, 30);
         canvasCtx.restore(); // Restore the original state
@@ -213,23 +212,14 @@ const PreTest: React.FC = () => {
 
 
   return (
-    // <div className="PreTest" onClick={enableCam}>
-      
-    //   <Webcam ref={webcamRef} className="webcam" autoPlay />
-    //   <canvas ref={canvasRef} className="output_canvas" onClick={enableCam}></canvas>
-      
-    //   <div className="enable-predictions distance-button buttonContainer button-container">
-    //       <Button buttonText="Distance" onClickAction={enableCam} />
-    //     </div>
-    // </div>
     <div className="PreTest" onClick={enableCam}>
-    <Webcam ref={webcamRef} className="webcam" mirrored={true} autoPlay  />
-    <canvas ref={canvasRef} className="output_canvas"></canvas>
-    
-    {/* <div className="buttonContainer">
-      <Button buttonText="Distance" onClickAction={enableCam} />
-    </div> */}
-  </div>
+      <Webcam ref={webcamRef} className="webcam" mirrored={true} autoPlay  />
+      <div className="camera-container">
+        <div className="distance-box"></div>
+        <canvas ref={canvasRef} className="output_canvas"/>
+      </div>
+      
+    </div>
     
   );
 };

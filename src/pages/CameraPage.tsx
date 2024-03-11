@@ -53,7 +53,7 @@ useEffect(() => {
     <IonPage>
       <Header headerText="Tap Video Output for Distance" />
       <IonContent fullscreen scrollY={false}>
-        <div className="camera-container">
+        <div>
           <PreTest />
         </div>
         
