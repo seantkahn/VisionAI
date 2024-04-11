@@ -68,9 +68,9 @@ const Results: React.FC = () => {
   };
   const handleFineTunePrescription = () => {
     if (testMode === "Letters") {
-      history.push("/LetterTest", { testMode, diopterResult });
+      history.push("/LetterTest2", { testMode, diopterResult });
     } else if (testMode === "Images") {
-      history.push("/ShapeTest", { testMode, diopterResult });
+      history.push("/ShapeTest2", { testMode, diopterResult });
     }  };
   return (
     <IonPage>
