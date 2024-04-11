@@ -100,7 +100,7 @@ Button {
   position: absolute;
   width: 640px;
   height: 480px;
-  border: 4px solid #000;
+  /* border: 4px solid #000; */
 }
 
 .distance-box {
@@ -117,8 +117,18 @@ Button {
   height: 480px;
 }
 
-@media only screen and (max-width: 768px) {
-  .webcam, .PreTest {
-    max-width: 80%;
-  }
+.webcam {
+  width: 640px;
+  height: 480px;
+  border: 4px solid #000;
 }
+
+@media only screen and (max-width: 500px) {
+  .camera-container, .webcam {
+    width: 320px;
+    height: 240px;
+  }
+
+
+  
+  }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { IonPage, IonContent, IonButton, IonIcon } from "@ionic/react";
 import { Container, Row, Col } from "react-bootstrap";
 import { eyeOutline } from "ionicons/icons";
@@ -24,166 +24,48 @@ const Test: React.FC = () => {
   const location = useLocation<LocationState>();
   const { testMode, eyeToExamine } = location.state || {};
   const history = useHistory();
+  const [currentInstructionIndex, setCurrentInstructionIndex] = useState(0);
+  const instructions = [
+    "Hold your face in front of your webcam and tap/click the screen once or twice for live distance calculations.",
+    "Grant access to the webcam if prompted. Face should be parallel/level with camera and environment should be well lit.",
+    "If you are testing one eye, cover the eye that is not being tested. Wear glasses if you are looking to see if you need a new prescription.",
+    "You will be prompted with five letters at a time. Say the letter and wait for the results.",
+    "Ensure you are 14 inches away from the camera for correct testing conditions. End the test when you can no longer read the letters or images clearly or if you cannot get 3/5 correct."
+  ];
 
   const goToSampleTest = () => {
     history.push("/CameraPage", { testMode, eyeToExamine });
   };
 
-  const webcamRef = useRef<HTMLVideoElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [faceLandmarker, setFaceLandmarker] = useState<any>(null);
-  const [webcamRunning, setWebcamRunning] = useState(false);
-  const knownDistanceInches = 12; // The known distance from the camera in inches
-  const knownDistanceMm = knownDistanceInches * 25.4; // Convert inches to mm
-  const knownWidthMm = 63; //mm
-  const focalLengthPixels = 0.78;
-  // Your calculated focal length in pixels
-  // let lastVideoTime = -1;
-  // let results = undefined;
-
-  const video = webcamRef.current;
-  const canvas = canvasRef.current;
-
-  // Calculate the distance from the webcam to the face using the focal length
-  function calculateDistanceFromWebcam(
-    focalLengthPixels: number,
-    pixelDistanceBetweenEyes: number,
-    knownWidthMm: number
-  ) {
-    // Calculate the distance from the webcam to thsce face using the focal length
-    return (focalLengthPixels * knownWidthMm) / pixelDistanceBetweenEyes;
-  }
-
-  // useEffect(() => {
-  //   createFaceLandmarker();
-
-  //   // The cleanup function will handle unmounting
-  //   return () => {
-  //     if (webcamRef.current && webcamRef.current.srcObject) {
-  //       const mediaStream = webcamRef.current.srcObject as MediaStream;
-  //       const tracks = mediaStream.getTracks();
-  //       tracks.forEach((track) => track.stop());
-  //     }
-  //   };
-  // }, []);
-
-  const createFaceLandmarker = async () => {
-    const filesetResolver = await vision.FilesetResolver.forVisionTasks(
-      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.3/wasm"
-    );
-    const newFaceLandmarker = await vision.FaceLandmarker.createFromOptions(
-      filesetResolver,
-      {
-        baseOptions: {
-          modelAssetPath:
-            "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task",
-          delegate: "GPU",
-        },
-        // outputFaceBlendshapes: true,
-        runningMode: "VIDEO",
-        numFaces: 1,
-      }
-    );
-    setFaceLandmarker(newFaceLandmarker);
-  };
-
-  const enableCam = () => {
-    if (!faceLandmarker) {
-      console.log("Wait! faceLandmarker not loaded yet.");
-      return;
-    }
-    setWebcamRunning(!webcamRunning);
-
-    if (!webcamRunning) {
-      const constraints = { video: true };
-      navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-        const video = webcamRef.current;
-        if (video) {
-          video.srcObject = stream;
-          video.addEventListener("loadeddata", predictWebcam);
-        }
-      });
+  const handleContinue = () => {
+    if (currentInstructionIndex < instructions.length - 1) {
+      setCurrentInstructionIndex(currentInstructionIndex + 1);
     } else {
-      // Stop the webcam stream
-      if (
-        webcamRef.current &&
-        webcamRef.current.srcObject instanceof MediaStream
-      ) {
-        const mediaStream = webcamRef.current.srcObject;
-        const tracks = mediaStream.getTracks();
-        tracks.forEach((track) => track.stop());
-      }
+      goToSampleTest();
     }
   };
 
-
-  const predictWebcam = async () => {
-    const video = webcamRef.current;
-    const canvas = canvasRef.current;
-
-    if (!video || !canvas) {
-      console.error("Video or canvas element is not available");
-      return;
-    }
-
-    const canvasCtx = canvas.getContext("2d");
-    if (!canvasCtx) {
-      console.error("Unable to get canvas context");
-      return;
-    }
-
-    if (webcamRunning) {
-      requestAnimationFrame(predictWebcam);
-    }
+  const toggleInstructionsVisibility = () => {
+    setCurrentInstructionIndex(currentInstructionIndex === 0 ? instructions.length - 1 : 0);
   };
 
   return (
-    //fix CSS by giving ionPage a class name.  Like the commented out line below
-    // <IonPage id="container">
-
     <IonPage>
       <Header headerText="Instructions"/>
-      
       <IonContent fullscreen className="ion-padding" scrollY={false}>
         <Container>
           <div className="instructions-container">
-            <p className="instructions-text">
-              Hold your face in front of your webcam and tap/click the screen once or twice for live distance calculations 
-              <br /><br />
-              Grant access to the webcam if
-              prompted. Face should be parallel/level with camera and environment
-              should be well lit.
-              <br /><br />
-              If you are testing one eye, cover the eye that is not being tested. 
-              Wear glasses if you are looking to see if you need a new prescription.
-              <br /><br />
-              You will be prompted with five letters at a time. Say the letter and wait for the results.
-              <br /><br />
-              Ensure you are 14 inches away from the camera for correct testing conditions.
-              End the test when you can no longer read the letters or images clearly or if you cannot get 3/5 correct.
-            </p>
+            {instructions.slice(0, currentInstructionIndex + 1).map((instruction, index) => (
+              <div>
+                 <p key={index} className={`instructions-text ${index < currentInstructionIndex ? '' : 'hidden'}`}>
+                {instruction}
+              </p>
+              </div>
+             
+            ))}
           </div>
-          <Button buttonText="Continue" onClickAction={goToSampleTest}/>
-        
-          <div id="liveView" className="videoView">
-            {/* <IonButton id="webcamButton" onClick={enableCam}>
-              {webcamRunning ? "DISABLE WEBCAM" : "ENABLE WEBCAM"}
-            </IonButton> */}
-            <div style={{ position: "relative" }}>
-              {/* <video
-                ref={webcamRef}
-                style={{ position: "absolute" }}
-                autoPlay
-                playsInline
-              ></video> */}
-              {/* <canvas
-                ref={canvasRef}
-                className="output_canvas"
-              ></canvas> */}
-            </div>
-          </div>
+          <Button buttonText={currentInstructionIndex < instructions.length - 1 ? "Continue" : "Start Test"} onClickAction={handleContinue}/>
         </Container>
-        
       </IonContent>
     </IonPage>
   );
