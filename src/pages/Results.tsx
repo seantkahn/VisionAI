@@ -66,7 +66,12 @@ const Results: React.FC = () => {
       console.error('Error taking or saving screenshot', e);
     }
   };
-
+  const handleFineTunePrescription = () => {
+    if (testMode === "Letters") {
+      history.push("/LetterTest", { testMode, diopterResult });
+    } else if (testMode === "Images") {
+      history.push("/ShapeTest", { testMode, diopterResult });
+    }  };
   return (
     <IonPage>
       <Header headerText="Results" />
@@ -91,14 +96,8 @@ const Results: React.FC = () => {
                 <div className="top-left-text">Recommended<br/>Diopter:</div>
               </div>
             </div>
-            
-            
 
-
-
-
-
-
+        
             {/* <h1>Test Mode: {testMode} </h1>
             <h1>Eye Tested: {eyeToExamine} </h1>
             <h1>Eye Strength: {eyeStrength}</h1>
@@ -107,13 +106,21 @@ const Results: React.FC = () => {
    + You may need an updated glasses prescription or reading glasses.<br/>
    + You may have an eye problem that requires the attention of your doctor.</h3>
 <h4>While these results can help you gauge your current visul acuity and changes over time, <br/>they are not a substitute for a comprehensive eye-exam performed by a trained and licensed Opthalmologist</h4> */}
-
           </div>
+          <div className="fine-tune-button-container">
+          <div></div>
+            {eyeStrength !== '20/20' && (
+              <button className="result-button" onClick={handleFineTunePrescription}>
+                <h1>Fine Tune Prescription?</h1>
+              </button>
+            )}
+            </div>
           <div className="result-button-container">
             <button className="result-button" onClick={takeAndSaveScreenshot}>
               <h1>Save as Image</h1>
               <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
             </button>
+            
           </div>
         </div>
        

@@ -2,7 +2,12 @@
   margin-top: 200px;
 } */
 
-.result-button-container {
+.fine-tune-button-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .result-button-container {
     display: flex;
     justify-content: center;
   }
