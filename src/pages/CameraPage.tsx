@@ -24,7 +24,6 @@ const stopWebcam = () => {
 };
 interface LocationState {
   testMode?: string;
-  // wearGlasses?: string;
   eyeToExamine?: string;
 }
 
