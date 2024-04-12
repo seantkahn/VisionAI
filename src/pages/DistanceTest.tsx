@@ -159,7 +159,7 @@ const DistanceTest: React.FC = () => {
       <Webcam
         ref={webcamRef}
         id="webcam"
-        style={{ width: videoWidth }}
+        // style={{ width: videoWidth }}
         onUserMedia={onWebcamStart}
         audio={false}  // Disable audio to prevent feedback issues
       />
