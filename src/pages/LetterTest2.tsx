@@ -51,9 +51,8 @@ const LetterTest2: React.FC = () => {
   const location = useLocation<LocationState>();
   const { testMode, eyeToExamine, diopterResult, firstPage } = location.state || {};
   const history = useHistory();
-  const [randomString, setRandomString] = useState<number>(firstPage || 0);
-  
-  const [buttonPressCount, setButtonPressCount] = useState(0);
+  const [randomString, setRandomString] = useState(generateRandomString());
+  const [buttonPressCount, setButtonPressCount] = useState<number>(firstPage || 0);
   // const [fontSize, setFontSize] = useState(70);
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
   const [isListening, setIsListening] = useState(false);
