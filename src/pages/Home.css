@@ -18,24 +18,7 @@
   color: #8c8c8c;
   margin: 0;
 }
- body{
---ion-background-color:linear-gradient(0deg, rgba(0,136,152,1) 0%, rgba(235,253,255,1) 100%, rgba(131,58,180,1) 100%);
 
- 
-
-}
-/* 
-
-linear-gradient(0deg, rgba(0,136,152,1) 0%, rgba(235,253,255,1) 100%, rgba(131,58,180,1) 100%);
-
-linear-gradient(0deg, rgba(0,136,152,1) 0%, rgba(182,255,221,1) 100%, rgba(131,58,180,1) 100%);
-linear-gradient(180deg, rgba(0,136,152,1) 0%, rgba(235,253,255,1) 100%, rgba(131,58,180,1) 100%);
-linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(139,14,255,1) 100%);
- linear-gradient(0deg, rgba(139,14,255,1) 0%, rgba(34,193,195,1) 100%); 
-linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(179,96,255,1) 100%);
-
-
-} */
 #container a {
   text-decoration: none;
 }
