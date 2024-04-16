@@ -12,6 +12,7 @@ interface LocationState {
   eyeToExamine?: string;
   eyeStrength?: string;
   diopterResult?: number;
+  firstPage?: number;
 }
 
 function getDynamicFontSize(physicalSizeMm: number) {
@@ -46,11 +47,12 @@ const generateRandomString = () => {
   return randomString;
 };
 
-const LetterTest: React.FC = () => {
+const LetterTest2: React.FC = () => {
   const location = useLocation<LocationState>();
-  const { testMode, eyeToExamine, diopterResult } = location.state || {};
+  const { testMode, eyeToExamine, diopterResult, firstPage } = location.state || {};
   const history = useHistory();
-  const [randomString, setRandomString] = useState(generateRandomString());
+  const [randomString, setRandomString] = useState<number>(firstPage || 0);
+  
   const [buttonPressCount, setButtonPressCount] = useState(0);
   // const [fontSize, setFontSize] = useState(70);
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
@@ -165,7 +167,7 @@ const LetterTest: React.FC = () => {
     setButtonPressCount(0);
       const selectedEyeStrength = eyeStrengthValues[visualAcuityIndex];
       const diopterResult = diopters[visualAcuityIndex];
-      history.push("./Results", { testMode, eyeToExamine, diopter: diopterResult, eyeStrength: selectedEyeStrength });
+      history.push("./Results2", { testMode, eyeToExamine, diopter: diopterResult, eyeStrength: selectedEyeStrength });
   };
 
   const toggleListening = () => {
@@ -253,4 +255,4 @@ const LetterTest: React.FC = () => {
   );
 };
 
-export default LetterTest;
+export default LetterTest2;

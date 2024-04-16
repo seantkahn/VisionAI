@@ -34,6 +34,9 @@ import CameraPage from "./pages/CameraPage";
 import LetterTest from "./pages/LetterTest";
 import ShapeTest from "./pages/ShapeTest";
 import Results from "./pages/Results";
+import LetterTest2 from "./pages/LetterTest";
+import ShapeTest2 from "./pages/ShapeTest";
+import Results2 from "./pages/Results";
 import VoiceTest from "./pages/VoiceTest";
 import DistanceTest from "./pages/DistanceTest";
 
@@ -57,6 +60,9 @@ const App: React.FC = () => (
         <Route path="/LetterTest" component={LetterTest} exact />
         <Route path="/ShapeTest" component={ShapeTest} exact />
         <Route path="/Results" component={Results} exact />
+        <Route path="/LetterTest2" component={LetterTest2} exact />
+        <Route path="/ShapeTest2" component={ShapeTest2} exact />
+        <Route path="/Results2" component={Results2} exact />
         <Route path="/DistanceTest" component={DistanceTest} exact />
 
       </IonRouterOutlet>

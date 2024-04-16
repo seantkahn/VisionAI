@@ -19,14 +19,15 @@ interface LocationState {
   eyeToExamine?: string;
   eyeStrength?: string;
   diopterResult?: string;
+  firstPage?: number;
 }
 const diopters = [0.00, 0.5, 1.00, 1.50, 2.00, 2.75, 4.00, 6.00];
 //const diopters = [0.00, -0.25, -0.50, -0.75, -1.00, -1.25, -1.50, -2.50];
 const eyeStrengthValues = ['20/20', '20/25', '20/30', '20/40', '20/50', '20/70', '20/100', '20/200'];
 
-const Results: React.FC = () => {
+const Results2: React.FC = () => {
   const location = useLocation<LocationState>();
-  const { testMode, eyeToExamine, eyeStrength, diopterResult } = location.state || {};
+  const { testMode, eyeToExamine, eyeStrength, diopterResult, firstPage } = location.state || {};
   const history = useHistory();
   const [screenshotData, setScreenshotData] = useState<string | null>(null);
 
@@ -130,4 +131,4 @@ const Results: React.FC = () => {
   );
 };
 
-export default Results;
+export default Results2;
