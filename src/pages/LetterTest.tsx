@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import { eyeOutline } from "ionicons/icons";
 import "./LetterTest.css";
 import Button from "../components/Button/Button";
-import PreTest2 from "../components/PreTest2";
+import PreTest from "../components/PreTest";
 interface LocationState {
   testMode?: string;
   eyeToExamine?: string;
@@ -184,7 +184,7 @@ const LetterTest: React.FC = () => {
         <IonText style={{ textAlign: "center" }}>
           <h1 style={{fontWeight: "bold"}}>Letter Test: {buttonPressCount}/7</h1>
         </IonText>
-        <PreTest2/>
+        <PreTest/>
 
         <IonText className="testText" style={{ fontSize: `${fontSizePx}px` }}>
           {randomString.map((obj, index) => (
