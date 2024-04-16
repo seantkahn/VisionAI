@@ -11,7 +11,7 @@ interface LocationState {
   testMode?: string;
   eyeToExamine?: string;
   eyeStrength?: string;
-  diopterRestult?: string;
+  diopterResult?: number;
 }
 
 function getDynamicFontSize(physicalSizeMm: number) {
@@ -48,7 +48,7 @@ const generateRandomString = () => {
 
 const LetterTest: React.FC = () => {
   const location = useLocation<LocationState>();
-  const { testMode, eyeToExamine } = location.state || {};
+  const { testMode, eyeToExamine, diopterResult } = location.state || {};
   const history = useHistory();
   const [randomString, setRandomString] = useState(generateRandomString());
   const [buttonPressCount, setButtonPressCount] = useState(0);
@@ -66,8 +66,15 @@ const LetterTest: React.FC = () => {
   const getFontSizePx = (mm: number) => {
     return getDynamicFontSize(mm);
   };
+  // Get the magnification factor based on the diopter result
+  const magnificationIndex = diopters.findIndex(d => d === diopterResult);
+  const magnificationFactor = diopterMagnification[magnificationIndex] || 1; // Default to 1 if no diopter result
 
-  const fontSizePx = getFontSizePx(visualAcuityMeasurements[visualAcuityIndex]);
+  // Apply magnification to the base visual acuity measurement to get adjusted font size
+  const fontSizeMm = visualAcuityMeasurements[visualAcuityIndex] * magnificationFactor;
+
+  const fontSizePx = getFontSizePx(visualAcuityMeasurements[visualAcuityIndex]*fontSizeMm);
+  //fontSizePx = fontSizeMm * 3.77953; // Convert mm to px assuming 96 DPI and standard scaling
 
   useEffect(() => {
     if ("webkitSpeechRecognition" in window) {

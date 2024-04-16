@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import { eyeOutline } from "ionicons/icons";
 import "./LetterTest.css";
 import Button from "../components/Button/Button";
-import PreTest from "../components/PreTest";
+import PreTest from "../components/PreTest2";
 interface LocationState {
   testMode?: string;
   eyeToExamine?: string;

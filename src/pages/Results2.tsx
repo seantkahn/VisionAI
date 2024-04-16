@@ -26,22 +26,23 @@ const eyeStrengthValues = ['20/20', '20/25', '20/30', '20/40', '20/50', '20/70',
 
 const Results: React.FC = () => {
   const location = useLocation<LocationState>();
-  const { testMode, eyeToExamine, eyeStrength } = location.state || {};
+  const { testMode, eyeToExamine, eyeStrength, diopterResult } = location.state || {};
   const history = useHistory();
   const [screenshotData, setScreenshotData] = useState<string | null>(null);
-  
+
+
   // Function to get the corresponding diopter for a given eye strength
-  const getDiopterResult = (eyeStrength: string) => {
-    const index = eyeStrengthValues.indexOf(eyeStrength);
-    return index !== -1 ? diopters[index].toFixed(2) : null;
-  };
-  const [diopterResult, setDiopterResult] = useState<string | null>(null);
-  useEffect(() => {
-    if (eyeStrength) {
-      const result = getDiopterResult(eyeStrength);
-      setDiopterResult(result !== null ? result.toString() : "N/A");
-    }
-  }, [eyeStrength]);
+//   const getDiopterResult = (eyeStrength: string) => {
+//     const index = eyeStrengthValues.indexOf(eyeStrength);
+//     return index !== -1 ? diopters[index].toFixed(2) : null;
+//   };
+//   const [diopterResult, setDiopterResult] = useState<string | null>(null);
+//   useEffect(() => {
+//     if (eyeStrength) {
+//       const result = getDiopterResult(eyeStrength);
+//       setDiopterResult(result !== null ? result.toString() : "N/A");
+//     }
+//   }, [eyeStrength]);
 
   const takeAndSaveScreenshot = async () => {
     try {
@@ -111,7 +112,7 @@ const Results: React.FC = () => {
           <div></div>
             {eyeStrength !== '20/20' && (
               <button className="result-button" onClick={handleFineTunePrescription}>
-                <h1>Fine Tune Prescription?</h1>
+                <h1>Fine Tune Prescription Furhter?</h1>
               </button>
             )}
             </div>
