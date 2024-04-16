@@ -153,6 +153,7 @@ const LetterTest: React.FC = () => {
   };
 
   const endTest = () => {
+    
     setButtonPressCount(0);
       const selectedEyeStrength = eyeStrengthValues[visualAcuityIndex];
       const diopterResult = diopters[visualAcuityIndex];
