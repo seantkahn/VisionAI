@@ -12,6 +12,13 @@ import { useHistory } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Button from "../components/Button/Button";
 import { useLocation } from "react-router-dom";
+import Box from '@mui/material/Box';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import StepContent from '@mui/material/StepContent';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 import "./Test.css"
 
 interface LocationState {
@@ -49,22 +56,83 @@ const Test: React.FC = () => {
     setCurrentInstructionIndex(currentInstructionIndex === 0 ? instructions.length - 1 : 0);
   };
 
+  const [activeStep, setActiveStep] = useState(0);
+  
+  const handleNext = () => {
+    if (activeStep < steps.length - 1) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    } else {
+      goToSampleTest();
+    }
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
+
+  const steps = [
+    {
+      label: 'Distance',
+      description: `Hold your face in front of your webcam and tap/click the screen once or twice for live distance calculations.`,
+    },
+    {
+      label: 'Well-lit room',
+      description:
+        'Grant access to the webcam if prompted. Face should be parallel/level with camera and environment should be well lit.',
+    },
+    {
+      label: 'Cover eye that is not being tested',
+      description: `If you are testing one eye, cover the eye that is not being tested. Wear glasses if you are looking to see if you need a new prescription.`,
+    },
+    {
+      label: 'Say or press the letter that appears',
+      description: `You will be prompted with five letters at a time. Say the letter and wait for the results.`,
+    },
+    {
+      label: 'Ensure you are far enough away',
+      description: `Ensure you are 14 inches away from the camera for correct testing conditions. End the test when you can no longer read the letters or images clearly or if you cannot get 3/5 correct.`,
+    },
+  ];
+
   return (
     <IonPage>
       <Header headerText="Instructions"/>
       <IonContent fullscreen className="ion-padding" scrollY={false}>
         <Container>
-          <div className="instructions-container">
-            {instructions.slice(0, currentInstructionIndex + 1).map((instruction, index) => (
-              <div>
-                 <p key={index} className={`instructions-text ${index < currentInstructionIndex ? '' : 'hidden'}`}>
-                {instruction}
-              </p>
-              </div>
-             
-            ))}
-          </div>
-          <Button buttonText={currentInstructionIndex < instructions.length - 1 ? "Continue" : "Start Test"} onClickAction={handleContinue}/>
+          <Box sx={{ maxWidth: 400 }}>
+            <Stepper activeStep={activeStep} orientation="vertical">
+              {steps.map((step, index) => (
+                <Step key={step.label}>
+                  <StepLabel>{step.label}</StepLabel>
+                  <StepContent>
+                    <Typography>{step.description}</Typography>
+                    <Box sx={{ mb: 2 }}>
+                      <Button
+                        buttonText={index === steps.length - 1 ? "Start Test" : "Continue"}
+                        onClickAction={handleNext}
+                      />
+                      {index !== 0 && (
+                        <Button
+                          buttonText="Previous"
+                          onClickAction={handleBack}
+                        />
+                      )}
+                    </Box>
+                  </StepContent>
+                </Step>
+              ))}
+            </Stepper>
+            {activeStep === steps.length && (
+              <Paper square elevation={0} sx={{ p: 3 }}>
+                <Typography>All steps completed - you&apos;re finished</Typography>
+                <Button buttonText="Reset" onClickAction={handleReset} />
+              </Paper>
+            )}
+          </Box>
         </Container>
       </IonContent>
     </IonPage>

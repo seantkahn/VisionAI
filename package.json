@@ -19,11 +19,15 @@
     "@capacitor/ios": "^5.5.1",
     "@capacitor/keyboard": "5.0.6",
     "@capacitor/status-bar": "5.0.6",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@ionic/react": "^7.0.0",
     "@ionic/react-router": "^7.0.0",
     "@mediapipe/camera_utils": "^0.3.1675466862",
     "@mediapipe/face_mesh": "^0.4.1633559619",
     "@mediapipe/tasks-vision": "^0.10.3",
+    "@mui/material": "^5.15.15",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@reacticons/ionicons": "^7.1.0",
     "@tensorflow/tfjs-backend-cpu": "^4.15.0",
     "@tensorflow/tfjs-backend-webgl": "^4.15.0",
@@ -44,6 +48,7 @@
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4",
     "react-webcam": "^7.2.0",
+    "styled-components": "^6.1.8",
     "tfjs": "^0.6.0"
   },
   "devDependencies": {
