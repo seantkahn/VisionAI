@@ -52,11 +52,11 @@ const LetterTest2: React.FC = () => {
   const { testMode, eyeToExamine, diopterResult, firstPage } = location.state || {};
   const history = useHistory();
   const [randomString, setRandomString] = useState(generateRandomString());
-  const [buttonPressCount, setButtonPressCount] = useState<number>(firstPage || 0);
+  const [buttonPressCount, setButtonPressCount] = useState(7 - (firstPage || 0));
   // const [fontSize, setFontSize] = useState(70);
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
   const [isListening, setIsListening] = useState(false);
-  const [visualAcuityIndex, setVisualAcuityIndex] = useState(7); // Initial visual acuity index for 20/20 vision
+  const [visualAcuityIndex, setVisualAcuityIndex] = useState(firstPage || 0);
   // const visualAcuityMeasurements = [0.23, 0.29, 0.35, 0.47, 0.58, 0.82, 1.23, 2.51];
   const visualAcuityMeasurements = [0.8, 1, 1.2, 1.5, 2, 2.8, 4, 8];
   const eyeStrengthValues = ['20/20', '20/25', '20/30', '20/40', '20/50', '20/70', '20/100', '20/200'];
@@ -70,22 +70,26 @@ const LetterTest2: React.FC = () => {
   // Get the magnification factor based on the diopter result
   const magnificationIndex = diopters.findIndex(d => d === diopterResult);
   const magnificationFactor = diopterMagnification[magnificationIndex] || 1; // Default to 1 if no diopter result
+  console.log(`Magnification Factor: ${magnificationFactor}`); // Log magnification factor
 
   // Apply magnification to the base visual acuity measurement to get adjusted font size
-  const fontSizeMm = visualAcuityMeasurements[visualAcuityIndex] * magnificationFactor;
+  // const fontSizeMm = visualAcuityMeasurements[visualAcuityIndex] * magnificationFactor;
 
-  const fontSizePx = getFontSizePx(visualAcuityMeasurements[visualAcuityIndex]*fontSizeMm);
-  //fontSizePx = fontSizeMm * 3.77953; // Convert mm to px assuming 96 DPI and standard scaling
+  var fontSizePx = getFontSizePx(visualAcuityMeasurements[visualAcuityIndex]*magnificationFactor);
+  console.log(`Font Size (px): ${fontSizePx}`); // Log font size in pixels
 
+  // //fontSizePx = fontSizeMm * 3.77953; // Convert mm to px assuming 96 DPI and standard scaling
+  // useEffect(() => {
+  //   const magnificationIndex = diopters.findIndex(d => d === diopterResult);
+  //   const currentMagnification = diopterMagnification[magnificationIndex] || 1;
+  //   const fontSizePx = getFontSizePx(visualAcuityMeasurements[visualAcuityIndex] * currentMagnification);
+  
+  //   console.log(`Updated Font Size (px): ${fontSizePx}`); // Ensure updates are logged for verification
+  // }, [visualAcuityIndex, diopterResult]);  // Add diopterResult to dependencies if its changes are possible within this component's lifecycle
+  
   useEffect(() => {
     if ("webkitSpeechRecognition" in window) {
       const webkitRecognition = new window.webkitSpeechRecognition();
-      // const speechRecognitionList = new window.webkitSpeechGrammarList();
-      // const grammar =
-      //   "#JSGF V1.0; grammar lettersAndNumbers; public <letterOrNumber> = (A | B | C | D | ... | Z | 0 | 1 | 2 | ... | 9);";
-      // speechRecognitionList.addFromString(grammar, 1);
-  
-      // webkitRecognition.grammars = speechRecognitionList;
       webkitRecognition.maxAlternatives = 1;
       webkitRecognition.continuous = true;
       webkitRecognition.interimResults = true;
@@ -140,6 +144,7 @@ const LetterTest2: React.FC = () => {
 
   const decreaseFontSize = () => {
     if (visualAcuityIndex > 0) {
+      console.log(`Decreasing font size from index ${visualAcuityIndex} to ${visualAcuityIndex - 1}`);
       setVisualAcuityIndex(visualAcuityIndex - 1);
       setRandomString(generateRandomString());
     }

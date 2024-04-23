@@ -200,7 +200,7 @@ const ShapeTest: React.FC = () => {
         <IonText style={{ textAlign: "center" }}>
           <h1 style={{fontWeight: "bold"}}>Shape Test: {buttonPressCount}/7</h1>
         </IonText>
-        <PreTest/>
+        {/* <PreTest/> */}
         <IonText className="testIcon" style={{ fontSize: `${fontSizePx}px` }}>
           <div className="icons-div">
             {randomString.map((obj, index) => (

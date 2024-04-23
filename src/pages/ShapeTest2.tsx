@@ -106,8 +106,9 @@ const ShapeTest2: React.FC = () => {
   const magnificationFactor = diopterMagnification[magnificationIndex] || 1; // Default to 1 if no diopter result
 
   // Apply magnification to the base visual acuity measurement to get adjusted font size
-  const fontSizeMm = visualAcuityMeasurements[visualAcuityIndex] * magnificationFactor;
-  const fontSizePx = getFontSizePx(visualAcuityMeasurements[visualAcuityIndex] *fontSizeMm);
+  // const fontSizeMm = visualAcuityMeasurements[visualAcuityIndex] * magnificationFactor;
+  var fontSizePx = getFontSizePx(visualAcuityMeasurements[visualAcuityIndex] *magnificationFactor);
+  console.log(`Diopter Result: ${diopterResult}, Magnification Factor: ${magnificationFactor},  Font Size PX: ${fontSizePx}`);
 
   //fontSizePx = fontSizeMm * 3.77953; // Convert mm to px assuming 96 DPI and standard scaling
 

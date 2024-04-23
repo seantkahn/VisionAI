@@ -67,12 +67,13 @@ const Results: React.FC = () => {
     }
   };
   const handleFineTunePrescription = () => {
-    const firstPage = eyeStrengthValues.indexOf(eyeStrength)
+    const firstPage = eyeStrengthValues.indexOf(eyeStrength ?? "")
     if (testMode === "Letters") {
       history.push("/LetterTest2", { testMode, eyeToExamine, eyeStrength, diopterResult,firstPage });
     } else if (testMode === "Images") {
       history.push("/ShapeTest2", { testMode, eyeToExamine, eyeStrength, diopterResult,firstPage });
-    }  };
+    }  
+  };
   return (
     <IonPage>
       <Header headerText="Results" />

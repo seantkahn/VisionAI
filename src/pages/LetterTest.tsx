@@ -185,7 +185,7 @@ const LetterTest: React.FC = () => {
         <IonText style={{ textAlign: "center" }}>
           <h1 style={{fontWeight: "bold"}}>Letter Test: {buttonPressCount}/7</h1>
         </IonText>
-        <PreTest/>
+        {/* <PreTest/> */}
 
         <IonText className="testText" style={{ fontSize: `${fontSizePx}px` }}>
           {randomString.map((obj, index) => (
