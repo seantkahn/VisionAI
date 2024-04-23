@@ -78,14 +78,14 @@ const LetterTest2: React.FC = () => {
   var fontSizePx = getFontSizePx(visualAcuityMeasurements[visualAcuityIndex]*magnificationFactor);
   console.log(`Font Size (px): ${fontSizePx}`); // Log font size in pixels
 
-  //fontSizePx = fontSizeMm * 3.77953; // Convert mm to px assuming 96 DPI and standard scaling
-  useEffect(() => {
-    const magnificationIndex = diopters.findIndex(d => d === diopterResult);
-    const currentMagnification = diopterMagnification[magnificationIndex] || 1;
-    const fontSizePx = getFontSizePx(visualAcuityMeasurements[visualAcuityIndex] * currentMagnification);
+  // //fontSizePx = fontSizeMm * 3.77953; // Convert mm to px assuming 96 DPI and standard scaling
+  // useEffect(() => {
+  //   const magnificationIndex = diopters.findIndex(d => d === diopterResult);
+  //   const currentMagnification = diopterMagnification[magnificationIndex] || 1;
+  //   const fontSizePx = getFontSizePx(visualAcuityMeasurements[visualAcuityIndex] * currentMagnification);
   
-    console.log(`Updated Font Size (px): ${fontSizePx}`); // Ensure updates are logged for verification
-  }, [visualAcuityIndex, diopterResult]);  // Add diopterResult to dependencies if its changes are possible within this component's lifecycle
+  //   console.log(`Updated Font Size (px): ${fontSizePx}`); // Ensure updates are logged for verification
+  // }, [visualAcuityIndex, diopterResult]);  // Add diopterResult to dependencies if its changes are possible within this component's lifecycle
   
   useEffect(() => {
     if ("webkitSpeechRecognition" in window) {
