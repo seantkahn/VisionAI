@@ -19,7 +19,6 @@ interface LocationState {
   eyeToExamine?: string;
   eyeStrength?: string;
   diopterResult?: number;
-  firstPage?: number;
 }
 
 function getDynamicFontSize(physicalSizeMm: any) {
@@ -70,7 +69,7 @@ const generateRandomString = () => {
 
 const ShapeTest2: React.FC = () => {
   const location = useLocation<LocationState>();
-  const { testMode, eyeToExamine, diopterResult, firstPage } = location.state || {};
+  const { testMode, eyeToExamine, diopterResult } = location.state || {};
   const history = useHistory();
   const [randomString, setRandomString] = useState(generateRandomString());
   const [buttonPressCount, setButtonPressCount] = useState<number>(firstPage || 0);

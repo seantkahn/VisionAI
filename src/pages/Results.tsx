@@ -109,6 +109,14 @@ const Results: React.FC = () => {
    + You may have an eye problem that requires the attention of your doctor.</h3>
 <h4>While these results can help you gauge your current visul acuity and changes over time, <br/>they are not a substitute for a comprehensive eye-exam performed by a trained and licensed Opthalmologist</h4> */}
           </div>
+          
+          <div className="result-button-container">
+            <button className="result-button" onClick={takeAndSaveScreenshot}>
+              <h1>Save as Image</h1>
+              <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
+            </button>
+            
+          </div>
           <div className="fine-tune-button-container">
           <div></div>
             {eyeStrength !== '20/20' && (
@@ -118,13 +126,6 @@ const Results: React.FC = () => {
               </button>
             )}
             </div>
-          <div className="result-button-container">
-            <button className="result-button" onClick={takeAndSaveScreenshot}>
-              <h1>Save as Image</h1>
-              <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
-            </button>
-            
-          </div>
         </div>
        
       </IonContent>
