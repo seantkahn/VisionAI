@@ -69,20 +69,21 @@ const generateRandomString = () => {
 
 const ShapeTest2: React.FC = () => {
   const location = useLocation<LocationState>();
-  const { testMode, eyeToExamine, diopterResult } = location.state || {};
+  const { testMode, eyeToExamine,eyeStrength, diopterResult } = location.state || {};
   const history = useHistory();
   const [randomString, setRandomString] = useState(generateRandomString());
-  const [buttonPressCount, setButtonPressCount] = useState<number>(firstPage || 0);
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
   
   const [isListening, setIsListening] = useState(false);
-  const [visualAcuityIndex, setVisualAcuityIndex] = useState(7);
   const visualAcuityMeasurements = [0.8, 1, 1.2, 1.5, 2, 2.8, 4, 8];
   const eyeStrengthValues = ['20/20', '20/25', '20/30', '20/40', '20/50', '20/70', '20/100', '20/200'];
   //const diopters = [0.00,-0.25,-0.50,-0.75,-1.00,-1.25,-1.50,-2.00,-2.50]; 
   const diopters = [0.00, 0.5, 1.00, 1.50, 2.00, 2.75, 4.00, 6.00];
   const diopterMagnification = [0, 1.125, 1.25, 1.375, 1.5, 1.6875, 2.0, 2.5]
-  
+  const initialIndex = eyeStrength ? eyeStrengthValues.indexOf(eyeStrength) : 0;
+  const [visualAcuityIndex, setVisualAcuityIndex] = useState(initialIndex);
+  const [buttonPressCount, setButtonPressCount] = useState(7 - initialIndex);
+
   const icons = [
     { icon: <CiApple />, keyword: "apple" },
     { icon: <PiBirdBold />, keyword: "bird" },
@@ -101,8 +102,7 @@ const ShapeTest2: React.FC = () => {
     return getDynamicFontSize(mm);
   };
   // Get the magnification factor based on the diopter result
-  const magnificationIndex = diopters.findIndex(d => d === diopterResult);
-  const magnificationFactor = diopterMagnification[magnificationIndex] || 1; // Default to 1 if no diopter result
+  const magnificationFactor = diopterMagnification[initialIndex];
 
   // Apply magnification to the base visual acuity measurement to get adjusted font size
   // const fontSizeMm = visualAcuityMeasurements[visualAcuityIndex] * magnificationFactor;
