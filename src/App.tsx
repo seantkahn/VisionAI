@@ -36,7 +36,7 @@ import ShapeTest from "./pages/ShapeTest";
 import Results from "./pages/Results";
 import LetterTest2 from "./pages/LetterTest2";
 import ShapeTest2 from "./pages/ShapeTest2";
-import Results2 from "./pages/Results";
+import Results2 from "./pages/Results2";
 import VoiceTest from "./pages/VoiceTest";
 import DistanceTest from "./pages/DistanceTest";
 
