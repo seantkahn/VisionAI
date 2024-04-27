@@ -88,6 +88,7 @@ const LetterTest: React.FC = () => {
   };
 
   const fontSizePx = getFontSizePx(visualAcuityMeasurements[visualAcuityIndex]);
+  console.log(`Font Size (px): ${fontSizePx}`); // Log font size in pixels
 
   useEffect(() => {
     if ("webkitSpeechRecognition" in window) {
