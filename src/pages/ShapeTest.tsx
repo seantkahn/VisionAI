@@ -37,7 +37,7 @@ function getDynamicFontSize(physicalSizeMm: any) {
   return physicalSizeInches * effectivePpi;
 }
 
-const generateRandomString = () => {
+const generateRandomString = (count:number) => {
   const icons = [
     { icon: <CiApple />, keyword: "apple" },
     { icon: <PiBirdBold />, keyword: "bird" },
@@ -52,18 +52,47 @@ const generateRandomString = () => {
 
   let randomString = [];
   let usedKeywords = new Set();
+  if (count<1){
 
-  while (randomString.length < 5) {
-    const randomIndex = Math.floor(Math.random() * icons.length);
-    const selectedIcon = icons[randomIndex];
+    while (randomString.length < 3) {
+      const randomIndex = Math.floor(Math.random() * icons.length);
+      const selectedIcon = icons[randomIndex];
 
-    if (!usedKeywords.has(selectedIcon.keyword)) {
-      usedKeywords.add(selectedIcon.keyword);
-      randomString.push({ icon: selectedIcon.icon, keyword: selectedIcon.keyword, recognized: false });
+      if (!usedKeywords.has(selectedIcon.keyword)) {
+        usedKeywords.add(selectedIcon.keyword);
+        randomString.push({ icon: selectedIcon.icon, keyword: selectedIcon.keyword, recognized: false });
+      }
     }
-  }
 
-  return randomString;
+    return randomString;
+  }
+  if (count==1){
+
+    while (randomString.length < 4) {
+      const randomIndex = Math.floor(Math.random() * icons.length);
+      const selectedIcon = icons[randomIndex];
+
+      if (!usedKeywords.has(selectedIcon.keyword)) {
+        usedKeywords.add(selectedIcon.keyword);
+        randomString.push({ icon: selectedIcon.icon, keyword: selectedIcon.keyword, recognized: false });
+      }
+    }
+
+    return randomString;
+  }
+  else{
+    while (randomString.length < 5) {
+      const randomIndex = Math.floor(Math.random() * icons.length);
+      const selectedIcon = icons[randomIndex];
+  
+      if (!usedKeywords.has(selectedIcon.keyword)) {
+        usedKeywords.add(selectedIcon.keyword);
+        randomString.push({ icon: selectedIcon.icon, keyword: selectedIcon.keyword, recognized: false });
+      }
+    }
+  
+    return randomString;
+  }
 };
 
 
@@ -71,7 +100,7 @@ const ShapeTest: React.FC = () => {
   const location = useLocation<LocationState>();
   const { testMode, eyeToExamine } = location.state || {};
   const history = useHistory();
-  const [randomString, setRandomString] = useState(generateRandomString());
+  const [randomString, setRandomString] = useState(generateRandomString(0));
   const [buttonPressCount, setButtonPressCount] = useState(0);
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
   
@@ -150,7 +179,7 @@ const ShapeTest: React.FC = () => {
         decreaseFontSize();
       }
   
-      setRandomString(generateRandomString());
+      setRandomString(generateRandomString(newCount));
     }
   };
 
@@ -175,14 +204,14 @@ const ShapeTest: React.FC = () => {
   const increaseFontSize = () => {
     if (visualAcuityIndex < visualAcuityMeasurements.length - 1) {
       setVisualAcuityIndex(visualAcuityIndex + 1);
-      setRandomString(generateRandomString());
+      setRandomString(generateRandomString(buttonPressCount));
     }
   };
 
   const decreaseFontSize = () => {
     if (visualAcuityIndex > 0) {
       setVisualAcuityIndex(visualAcuityIndex - 1);
-      setRandomString(generateRandomString());
+      setRandomString(generateRandomString(buttonPressCount));
     }
   };
 
@@ -242,14 +271,21 @@ const ShapeTest: React.FC = () => {
           </div>
           <div className="shape-container">
           <div className="shape-row">
-            {icons.slice(0, 5).map((obj, index) => (
+            {icons.slice(0, 3).map((obj, index) => (
               <button key={index} onClick={() => handleIconClick(obj.keyword)}>
                 {obj.icon}
               </button>
             ))}
           </div>
           <div className="shape-row">
-            {icons.slice(5).map((obj, index) => (
+            {icons.slice(3,6).map((obj, index) => (
+              <button key={index} onClick={() => handleIconClick(obj.keyword)}>
+                {obj.icon}
+              </button>
+            ))}
+          </div>
+          <div className="shape-row">
+            {icons.slice(6).map((obj, index) => (
               <button key={index} onClick={() => handleIconClick(obj.keyword)}>
                 {obj.icon}
               </button>

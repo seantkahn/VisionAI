@@ -123,6 +123,10 @@ const TestConfig: React.FC = () => {
           </IonSelect>
         </IonItem> */}
         <div className="padding"></div>
+        <br/><br/>
+        <br/><br/>
+
+        <br/><br/>
         <Button buttonText="Continue" onClickAction={continueToPreTest} />
 
         <IonAlert

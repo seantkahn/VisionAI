@@ -29,27 +29,49 @@ function getDynamicFontSize(physicalSizeMm: number) {
   return physicalSizeInches * effectivePpi;
 }
 
-const generateRandomString = () => {
+const generateRandomString = (count: number) => {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   let randomString = [];
   let usedIndices = new Set();
-
-  while (randomString.length < 5) {
-    const randomIndex = Math.floor(Math.random() * alphabet.length);
-    if (!usedIndices.has(randomIndex)) {
-      usedIndices.add(randomIndex);
-      randomString.push({ letter: alphabet[randomIndex], recognized: false });
+  if (count<1){
+    while (randomString.length < 3) {
+      const randomIndex = Math.floor(Math.random() * alphabet.length);
+      if (!usedIndices.has(randomIndex)) {
+        usedIndices.add(randomIndex);
+        randomString.push({ letter: alphabet[randomIndex], recognized: false });
+      }
     }
+  
+    return randomString;
   }
-
-  return randomString;
+  if (count==1){
+    while (randomString.length < 4) {
+      const randomIndex = Math.floor(Math.random() * alphabet.length);
+      if (!usedIndices.has(randomIndex)) {
+        usedIndices.add(randomIndex);
+        randomString.push({ letter: alphabet[randomIndex], recognized: false });
+      }
+    }
+  
+    return randomString;
+  }
+  else{
+    while (randomString.length < 5) {
+      const randomIndex = Math.floor(Math.random() * alphabet.length);
+      if (!usedIndices.has(randomIndex)) {
+        usedIndices.add(randomIndex);
+        randomString.push({ letter: alphabet[randomIndex], recognized: false });
+      }
+    }
+    return randomString;
+  }
 };
 
 const LetterTest: React.FC = () => {
   const location = useLocation<LocationState>();
   const { testMode, eyeToExamine } = location.state || {};
   const history = useHistory();
-  const [randomString, setRandomString] = useState(generateRandomString());
+  const [randomString, setRandomString] = useState(generateRandomString(0));
   const [buttonPressCount, setButtonPressCount] = useState(0);
   // const [fontSize, setFontSize] = useState(70);
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
@@ -124,14 +146,14 @@ const LetterTest: React.FC = () => {
   const increaseFontSize = () => {
     if (visualAcuityIndex < visualAcuityMeasurements.length - 1) {
       setVisualAcuityIndex(visualAcuityIndex + 1);
-      setRandomString(generateRandomString());
+      setRandomString(generateRandomString(buttonPressCount));
     }
   };
 
   const decreaseFontSize = () => {
     if (visualAcuityIndex > 0) {
       setVisualAcuityIndex(visualAcuityIndex - 1);
-      setRandomString(generateRandomString());
+      setRandomString(generateRandomString(buttonPressCount));
     }
   };
 
@@ -148,7 +170,7 @@ const LetterTest: React.FC = () => {
         decreaseFontSize();
       }
   
-      setRandomString(generateRandomString());
+      setRandomString(generateRandomString(newCount));
     }
   };
 

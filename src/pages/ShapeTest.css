@@ -68,6 +68,8 @@
   align-items: center;
   justify-content: center;
   width: 360px;
+  border-radius: 50px; /* Rounded edges */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.32); /* Shadow box */
 }
 
 .speech-button h1 {
@@ -76,6 +78,7 @@
   margin-right: 10px;
   margin-top: 0;
   margin-bottom: 0;
+  
 }
 
 .button .eye {
@@ -91,6 +94,9 @@
   align-items: center;
   justify-content: center;
   width: 360px;
+  border-radius: 50px; /* Rounded edges */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.32); /* Shadow box */
+
 }
 
 .speech-next-button h1 {
@@ -110,6 +116,10 @@
   align-items: center;
   justify-content: center;
   width: 360px;
+  border-radius: 50px; /* Rounded edges */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.32); /* Shadow box */
+
+  
 }
 
 .speech-end-button h1 {
@@ -150,19 +160,24 @@
 }
 
 .shape-row:last-of-type {
-  margin-top: 20px;
 
 }
 
 .shape-row button {
-  width: 58px;
-  height: 58px;
+  display: flex; /* Use flexbox to center contents */
+  align-items: center; /* Vertically center the items in the button */
+  justify-content: center; /* Horizontally center the items */
+  width: 75px;
+  height: 75px;
+
   background-color: #FFF;
   color: #000;
-  border: 1px solid #000;
-  border-radius: 4px;
+  border: 0.5px solid #000;
+  border-radius: 1px;
   font-weight: bold;
-  font-size: 40px;
-  margin-left: 5px;
-  margin-right: 5px;
+  font-size: 65px;
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-top:5px;
+  margin-bottom:5px;
 }
