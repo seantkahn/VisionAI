@@ -102,13 +102,13 @@ const Test: React.FC = () => {
     <IonPage>
       <Header headerText="Instructions"/>
       <IonContent fullscreen className="ion-padding" scrollY={false}>
-        <Container>
-          <Box sx={{ maxWidth: 400 }}>
-            <Stepper activeStep={activeStep} orientation="vertical">
+        <Container className="transparentBackground">
+          <Box sx={{ maxWidth: 400,bgcolor:"transparent" }}>
+            <Stepper activeStep={activeStep} orientation="vertical"sx={{ bgcolor: 'transparent' }} >
               {steps.map((step, index) => (
-                <Step key={step.label}>
+                <Step key={step.label} sx={{ bgcolor: 'transparent' }}>
                   <StepLabel>{step.label}</StepLabel>
-                  <StepContent>
+                  <StepContent sx={{ bgcolor: 'transparent' }}>
                     <Typography>{step.description}</Typography>
                     <Box sx={{ mb: 2 }}>
                       <Button
@@ -127,7 +127,7 @@ const Test: React.FC = () => {
               ))}
             </Stepper>
             {activeStep === steps.length && (
-              <Paper square elevation={0} sx={{ p: 3 }}>
+              <Paper square elevation={0} sx={{ p: 3 , bgcolor: 'transparent' }}>
                 <Typography>All steps completed - you&apos;re finished</Typography>
                 <Button buttonText="Reset" onClickAction={handleReset} />
               </Paper>

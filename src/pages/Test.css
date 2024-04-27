@@ -48,3 +48,6 @@
 .instructions-text.hidden {
   display: none;
 }
+.transparentBackground {
+  background-color: transparent !important;;
+}
