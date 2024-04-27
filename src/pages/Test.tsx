@@ -94,7 +94,7 @@ const Test: React.FC = () => {
     },
     {
       label: 'Ensure you are far enough away',
-      description: `Ensure you are 14 inches away from the camera for correct testing conditions. End the test when you can no longer read the letters or images clearly or if you cannot get 3/5 correct.`,
+      description: `Ensure you are 14 inches away from the camera for correct testing conditions. End the test when you can no longer read the letters or images clearly or if you cannot get at least 3 correct.`,
     },
   ];
 
