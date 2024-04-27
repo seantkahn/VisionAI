@@ -12,7 +12,6 @@ interface LocationState {
   eyeToExamine?: string;
   eyeStrength?: string;
   diopterResult?: number;
-  firstPage?: number;
 }
 
 function getDynamicFontSize(physicalSizeMm: number) {
@@ -49,27 +48,29 @@ const generateRandomString = () => {
 
 const LetterTest2: React.FC = () => {
   const location = useLocation<LocationState>();
-  const { testMode, eyeToExamine, diopterResult, firstPage } = location.state || {};
+  const { testMode, eyeToExamine, eyeStrength, diopterResult } = location.state || {};
   const history = useHistory();
   const [randomString, setRandomString] = useState(generateRandomString());
-  const [buttonPressCount, setButtonPressCount] = useState(7 - (firstPage || 0));
+
   // const [fontSize, setFontSize] = useState(70);
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
   const [isListening, setIsListening] = useState(false);
-  const [visualAcuityIndex, setVisualAcuityIndex] = useState(firstPage || 0);
+
   // const visualAcuityMeasurements = [0.23, 0.29, 0.35, 0.47, 0.58, 0.82, 1.23, 2.51];
   const visualAcuityMeasurements = [0.8, 1, 1.2, 1.5, 2, 2.8, 4, 8];
   const eyeStrengthValues = ['20/20', '20/25', '20/30', '20/40', '20/50', '20/70', '20/100', '20/200'];
   //const diopters = [0.00,-0.25,-0.50,-0.75,-1.00,-1.25,-1.50,-2.00,-2.50]; 
   const diopters = [0.00, 0.5, 1.00, 1.50, 2.00, 2.75, 4.00, 6.00];
   const diopterMagnification = [0, 1.125, 1.25, 1.375, 1.5, 1.6875, 2.0, 2.5]
+  const initialIndex = eyeStrength ? eyeStrengthValues.indexOf(eyeStrength) : 0;
+  const [visualAcuityIndex, setVisualAcuityIndex] = useState(initialIndex);
+  const [buttonPressCount, setButtonPressCount] = useState(7 - initialIndex);
 
   const getFontSizePx = (mm: number) => {
     return getDynamicFontSize(mm);
   };
   // Get the magnification factor based on the diopter result
-  const magnificationIndex = diopters.findIndex(d => d === diopterResult);
-  const magnificationFactor = diopterMagnification[magnificationIndex] || 1; // Default to 1 if no diopter result
+  const magnificationFactor = diopterMagnification[initialIndex];
   console.log(`Magnification Factor: ${magnificationFactor}`); // Log magnification factor
 
   // Apply magnification to the base visual acuity measurement to get adjusted font size
