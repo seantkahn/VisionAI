@@ -68,6 +68,8 @@
   align-items: center;
   justify-content: center;
   width: 360px;
+  border-radius: 50px; /* Rounded edges */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.32); /* Shadow box */
 }
 
 .speech-button h1 {
@@ -76,6 +78,7 @@
   margin-right: 10px;
   margin-top: 0;
   margin-bottom: 0;
+  
 }
 
 .button .eye {
@@ -91,6 +94,9 @@
   align-items: center;
   justify-content: center;
   width: 360px;
+  border-radius: 50px; /* Rounded edges */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.32); /* Shadow box */
+
 }
 
 .speech-next-button h1 {
@@ -110,6 +116,10 @@
   align-items: center;
   justify-content: center;
   width: 360px;
+  border-radius: 50px; /* Rounded edges */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.32); /* Shadow box */
+
+  
 }
 
 .speech-end-button h1 {
