@@ -19,6 +19,8 @@ interface LocationState {
   eyeToExamine?: string;
   eyeStrength?: string;
   diopterResult?: number;
+  eyeStrengthIndex?: number;  
+
 }
 
 function getDynamicFontSize(physicalSizeMm: any) {
@@ -166,9 +168,11 @@ const ShapeTest2: React.FC = () => {
 
   const endTest = () => {
     setButtonPressCount(0);
+    const eyeStrengthIndex = visualAcuityIndex;  // Get index of the current eye strength
+
     const selectedEyeStrength = eyeStrengthValues[visualAcuityIndex];
     const diopterResult = diopters[visualAcuityIndex];
-    history.push("./Results2", { testMode, eyeToExamine, diopter: diopterResult, eyeStrength: selectedEyeStrength });
+    history.push("./Results2", { testMode, eyeToExamine, diopter: diopterResult, eyeStrength: selectedEyeStrength,initialIndex,eyeStrengthIndex });
   };
 
   const toggleListening = () => {
