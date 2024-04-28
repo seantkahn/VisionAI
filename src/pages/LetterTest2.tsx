@@ -169,13 +169,25 @@ const LetterTest2: React.FC = () => {
       setRandomString(generateRandomString());
     }
   };
+//if the user made it to 20/20 with a diopter correction, recommended diopter to be reduced by one to be conservative with the lens correction. 
+//If they didnt make it to 20/20, pass the same diopterValue of the correction as the proper diopter value
 
   const endTest = () => {
     setButtonPressCount(0);
     const eyeStrengthIndex = visualAcuityIndex;  // Get index of the current eye strength
       const selectedEyeStrength = eyeStrengthValues[visualAcuityIndex];
-      const diopterResult = diopters[visualAcuityIndex];
-      history.push("./Results2", { testMode, eyeToExamine, diopter: diopterResult, eyeStrength: selectedEyeStrength,initialIndex,eyeStrengthIndex });
+      let selectedDiopterResult = diopters[eyeStrengthIndex];  // Fetch the diopter based on the final visual acuity index
+      if (selectedEyeStrength === '20/20' && eyeStrengthIndex > 0) {
+        selectedDiopterResult = diopters[eyeStrengthIndex - 1];  // Reduce diopter by one level to be conservative
+    }
+      console.log("Navigating to Results2 with the following parameters:");
+      console.log("Test Mode:", testMode);
+      console.log("Eye to Examine:", eyeToExamine);
+      console.log("Selected Eye Strength:", selectedEyeStrength);
+      console.log("Diopter Result:", diopterResult);
+      console.log("EyeStrength:", eyeStrength);
+      console.log("Eye Strength Index:", eyeStrengthIndex);
+      history.push("./Results2", { testMode, eyeToExamine, diopterResult:selectedDiopterResult, eyeStrength: selectedEyeStrength,initialIndex, eyeStrengthIndex });
   };
 
   const toggleListening = () => {

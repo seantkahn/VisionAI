@@ -33,7 +33,8 @@ const Results2: React.FC = () => {
   const [screenshotData, setScreenshotData] = useState<string | null>(null);
   const currentDiopter = diopters[eyeStrengthIndex ?? 0];  // Fallback to 0 if undefined
 
-
+//if the user made it to 20/20 with a diopter correction, recommended diopter to be reduced by one to be conservative with the lens correction. 
+//If they didnt make it to 20/20, pass the same diopterValue of the correction as the proper diopter value
   const takeAndSaveScreenshot = async () => {
     try {
       const content = document.getElementById("screenshot-content");
@@ -83,7 +84,7 @@ const Results2: React.FC = () => {
                 <div className="top-left-text">Eye Strength:</div>
               </div>
               <div className="result-box">
-                <h1>+{currentDiopter}</h1>
+                <h1>+{diopterResult}</h1>
                 <div className="top-left-text">Recommended<br/>Diopter:</div>
               </div>
             </div>
