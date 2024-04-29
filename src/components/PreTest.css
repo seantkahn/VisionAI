@@ -122,9 +122,13 @@ Button {
   height: 480px;
   border: 4px solid #000;
 }
+.output_canvas, .webcam, .camera-container {
+  max-width: 100%; /* Ensure it does not overflow the screen */
+  height: auto; /* Maintain aspect ratio */
+}
 
 @media only screen and (max-width: 500px) {
-  .camera-container, .webcam {
+  .camera-container, .webcam, .output_canvas {
     width: 320px;
     height: 240px;
   }
