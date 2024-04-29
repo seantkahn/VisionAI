@@ -111,7 +111,7 @@ const Results2: React.FC = () => {
           <div></div>
             {eyeStrength !== '20/20' && (
               <button className="result-button" onClick={handleFineTunePrescription}>
-                <h1>Fine Tune Prescription Furhter?</h1>
+                <h1>Fine Tune Prescription Further?</h1>
               </button>
             )}
             </div>
