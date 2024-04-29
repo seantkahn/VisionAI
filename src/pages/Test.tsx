@@ -109,7 +109,7 @@ const Test: React.FC = () => {
                 <Step key={step.label}>
                   <StepLabel classes = {{label: 'custom-step-label'}}>{step.label}</StepLabel>
                   <StepContent>
-                    <Typography>{step.description}</Typography>
+                    <Typography className = "step-description" >{step.description}</Typography>
                     <Box sx={{ mb: 2 }}>
 
                       {index !== 0 && (
