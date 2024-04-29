@@ -19,7 +19,8 @@ interface LocationState {
   eyeToExamine?: string;
   eyeStrength?: string;
   diopterResult?: string;
-  firstPage?: number;
+initialIndex?: number;
+eyeStrengthIndex?: number;  
 }
 const diopters = [0.00, 0.5, 1.00, 1.50, 2.00, 2.75, 4.00, 6.00];
 //const diopters = [0.00, -0.25, -0.50, -0.75, -1.00, -1.25, -1.50, -2.50];
@@ -27,24 +28,13 @@ const eyeStrengthValues = ['20/20', '20/25', '20/30', '20/40', '20/50', '20/70',
 
 const Results2: React.FC = () => {
   const location = useLocation<LocationState>();
-  const { testMode, eyeToExamine, eyeStrength, diopterResult, firstPage } = location.state || {};
+  const { testMode, eyeToExamine, eyeStrength, diopterResult, initialIndex,eyeStrengthIndex } = location.state || {};
   const history = useHistory();
   const [screenshotData, setScreenshotData] = useState<string | null>(null);
+  const currentDiopter = diopters[eyeStrengthIndex ?? 0];  // Fallback to 0 if undefined
 
-
-  // Function to get the corresponding diopter for a given eye strength
-//   const getDiopterResult = (eyeStrength: string) => {
-//     const index = eyeStrengthValues.indexOf(eyeStrength);
-//     return index !== -1 ? diopters[index].toFixed(2) : null;
-//   };
-//   const [diopterResult, setDiopterResult] = useState<string | null>(null);
-//   useEffect(() => {
-//     if (eyeStrength) {
-//       const result = getDiopterResult(eyeStrength);
-//       setDiopterResult(result !== null ? result.toString() : "N/A");
-//     }
-//   }, [eyeStrength]);
-
+//if the user made it to 20/20 with a diopter correction, recommended diopter to be reduced by one to be conservative with the lens correction. 
+//If they didnt make it to 20/20, pass the same diopterValue of the correction as the proper diopter value
   const takeAndSaveScreenshot = async () => {
     try {
       const content = document.getElementById("screenshot-content");
@@ -109,21 +99,22 @@ const Results2: React.FC = () => {
    + You may have an eye problem that requires the attention of your doctor.</h3>
 <h4>While these results can help you gauge your current visul acuity and changes over time, <br/>they are not a substitute for a comprehensive eye-exam performed by a trained and licensed Opthalmologist</h4> */}
           </div>
-          <div className="fine-tune-button-container">
-          <div></div>
-            {eyeStrength !== '20/20' && (
-              <button className="result-button" onClick={handleFineTunePrescription}>
-                <h1>Fine Tune Prescription Furhter?</h1>
-              </button>
-            )}
-            </div>
+         
           <div className="result-button-container">
             <button className="result-button" onClick={takeAndSaveScreenshot}>
               <h1>Save as Image</h1>
               <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
             </button>
             
-          </div>
+          </div> 
+          <div className="fine-tune-button-container">
+          <div></div>
+            {eyeStrength !== '20/20' && (
+              <button className="result-button" onClick={handleFineTunePrescription}>
+                <h1>Fine Tune Prescription Further?</h1>
+              </button>
+            )}
+            </div>
         </div>
        
       </IonContent>

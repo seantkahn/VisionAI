@@ -48,3 +48,14 @@
 .instructions-text.hidden {
   display: none;
 }
+.transparentBackground {
+  background-color: transparent !important;;
+}
+
+.custom-step-label {
+  font-size: 1.2rem !important;
+}
+
+.step-description {
+  font-size: 1.1rem !important;
+}

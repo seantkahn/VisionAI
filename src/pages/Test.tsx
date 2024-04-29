@@ -94,7 +94,7 @@ const Test: React.FC = () => {
     },
     {
       label: 'Ensure you are far enough away',
-      description: `Ensure you are 14 inches away from the camera for correct testing conditions. End the test when you can no longer read the letters or images clearly or if you cannot get 3/5 correct.`,
+      description: `Ensure you are 14 inches away from the camera for correct testing conditions. End the test when you can no longer read the letters or images clearly or if you cannot get at least 3 correct.`,
     },
   ];
 
@@ -102,32 +102,33 @@ const Test: React.FC = () => {
     <IonPage>
       <Header headerText="Instructions"/>
       <IonContent fullscreen className="ion-padding" scrollY={false}>
-        <Container>
-          <Box sx={{ maxWidth: 400 }}>
-            <Stepper activeStep={activeStep} orientation="vertical">
+        <Container className="transparentBackground">
+          <Box sx={{ maxWidth: 400}}>
+            <Stepper activeStep={activeStep} orientation="vertical" >
               {steps.map((step, index) => (
                 <Step key={step.label}>
-                  <StepLabel>{step.label}</StepLabel>
+                  <StepLabel classes = {{label: 'custom-step-label'}}>{step.label}</StepLabel>
                   <StepContent>
-                    <Typography>{step.description}</Typography>
+                    <Typography className = "step-description" >{step.description}</Typography>
                     <Box sx={{ mb: 2 }}>
-                      <Button
-                        buttonText={index === steps.length - 1 ? "Start Test" : "Continue"}
-                        onClickAction={handleNext}
-                      />
+
                       {index !== 0 && (
                         <Button
                           buttonText="Previous"
                           onClickAction={handleBack}
                         />
-                      )}
+                      )}                      
+                      <Button
+                        buttonText={index === steps.length - 1 ? "Start Test" : "Continue"}
+                        onClickAction={handleNext}
+                      />
                     </Box>
                   </StepContent>
                 </Step>
               ))}
             </Stepper>
             {activeStep === steps.length && (
-              <Paper square elevation={0} sx={{ p: 3 }}>
+              <Paper square elevation={0} sx={{ p: 3 , bgcolor: 'transparent' }}>
                 <Typography>All steps completed - you&apos;re finished</Typography>
                 <Button buttonText="Reset" onClickAction={handleReset} />
               </Paper>

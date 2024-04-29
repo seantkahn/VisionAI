@@ -19,6 +19,8 @@ interface LocationState {
   eyeToExamine?: string;
   eyeStrength?: string;
   diopterResult?: number;
+  eyeStrengthIndex?: number;  
+
 }
 
 function getDynamicFontSize(physicalSizeMm: any) {
@@ -69,20 +71,21 @@ const generateRandomString = () => {
 
 const ShapeTest2: React.FC = () => {
   const location = useLocation<LocationState>();
-  const { testMode, eyeToExamine, diopterResult } = location.state || {};
+  const { testMode, eyeToExamine,eyeStrength, diopterResult } = location.state || {};
   const history = useHistory();
   const [randomString, setRandomString] = useState(generateRandomString());
-  const [buttonPressCount, setButtonPressCount] = useState<number>(firstPage || 0);
   const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
   
   const [isListening, setIsListening] = useState(false);
-  const [visualAcuityIndex, setVisualAcuityIndex] = useState(7);
   const visualAcuityMeasurements = [0.8, 1, 1.2, 1.5, 2, 2.8, 4, 8];
   const eyeStrengthValues = ['20/20', '20/25', '20/30', '20/40', '20/50', '20/70', '20/100', '20/200'];
   //const diopters = [0.00,-0.25,-0.50,-0.75,-1.00,-1.25,-1.50,-2.00,-2.50]; 
   const diopters = [0.00, 0.5, 1.00, 1.50, 2.00, 2.75, 4.00, 6.00];
   const diopterMagnification = [0, 1.125, 1.25, 1.375, 1.5, 1.6875, 2.0, 2.5]
-  
+  const initialIndex = eyeStrength ? eyeStrengthValues.indexOf(eyeStrength) : 0;
+  const [visualAcuityIndex, setVisualAcuityIndex] = useState(initialIndex);
+  const [buttonPressCount, setButtonPressCount] = useState(7 - initialIndex);
+
   const icons = [
     { icon: <CiApple />, keyword: "apple" },
     { icon: <PiBirdBold />, keyword: "bird" },
@@ -101,8 +104,7 @@ const ShapeTest2: React.FC = () => {
     return getDynamicFontSize(mm);
   };
   // Get the magnification factor based on the diopter result
-  const magnificationIndex = diopters.findIndex(d => d === diopterResult);
-  const magnificationFactor = diopterMagnification[magnificationIndex] || 1; // Default to 1 if no diopter result
+  const magnificationFactor = diopterMagnification[initialIndex];
 
   // Apply magnification to the base visual acuity measurement to get adjusted font size
   // const fontSizeMm = visualAcuityMeasurements[visualAcuityIndex] * magnificationFactor;
@@ -163,13 +165,28 @@ const ShapeTest2: React.FC = () => {
       setRandomString(generateRandomString());
     }
   };
+//if the user made it to 20/20 with a diopter correction, recommended diopter to be reduced by one to be conservative with the lens correction. 
+//If they didnt make it to 20/20, pass the same diopterValue of the correction as the proper diopter value
 
   const endTest = () => {
     setButtonPressCount(0);
+    const eyeStrengthIndex = visualAcuityIndex;  // Get index of the current eye strength
+
     const selectedEyeStrength = eyeStrengthValues[visualAcuityIndex];
-    const diopterResult = diopters[visualAcuityIndex];
-    history.push("./Results2", { testMode, eyeToExamine, diopter: diopterResult, eyeStrength: selectedEyeStrength });
-  };
+    let selectedDiopterResult = diopters[eyeStrengthIndex];  // Fetch the diopter based on the final visual acuity index
+    if (selectedEyeStrength === '20/20' && eyeStrengthIndex > 0) {
+      selectedDiopterResult = diopters[eyeStrengthIndex - 1];  // Reduce diopter by one level to be conservative
+  }
+    console.log("Navigating to Results2 with the following parameters:");
+    console.log("Test Mode:", testMode);
+    console.log("Eye to Examine:", eyeToExamine);
+    console.log("Selected Eye Strength:", selectedEyeStrength);
+    console.log("Diopter Result:", diopterResult);
+    console.log("EyeStrength:", eyeStrength);
+    console.log("Eye Strength Index:", eyeStrengthIndex);
+    history.push("./Results2", { testMode, eyeToExamine, diopterResult:selectedDiopterResult, eyeStrength: selectedEyeStrength,initialIndex, eyeStrengthIndex });
+};
+
 
   const toggleListening = () => {
     if (recognition) {
