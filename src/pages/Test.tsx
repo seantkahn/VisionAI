@@ -103,24 +103,25 @@ const Test: React.FC = () => {
       <Header headerText="Instructions"/>
       <IonContent fullscreen className="ion-padding" scrollY={false}>
         <Container className="transparentBackground">
-          <Box sx={{ maxWidth: 400,bgcolor:"transparent" }}>
-            <Stepper activeStep={activeStep} orientation="vertical"sx={{ bgcolor: 'transparent' }} >
+          <Box sx={{ maxWidth: 400}}>
+            <Stepper activeStep={activeStep} orientation="vertical" >
               {steps.map((step, index) => (
-                <Step key={step.label} sx={{ bgcolor: 'transparent' }}>
-                  <StepLabel>{step.label}</StepLabel>
-                  <StepContent sx={{ bgcolor: 'transparent' }}>
+                <Step key={step.label}>
+                  <StepLabel classes = {{label: 'custom-step-label'}}>{step.label}</StepLabel>
+                  <StepContent>
                     <Typography>{step.description}</Typography>
                     <Box sx={{ mb: 2 }}>
-                      <Button
-                        buttonText={index === steps.length - 1 ? "Start Test" : "Continue"}
-                        onClickAction={handleNext}
-                      />
+
                       {index !== 0 && (
                         <Button
                           buttonText="Previous"
                           onClickAction={handleBack}
                         />
-                      )}
+                      )}                      
+                      <Button
+                        buttonText={index === steps.length - 1 ? "Start Test" : "Continue"}
+                        onClickAction={handleNext}
+                      />
                     </Box>
                   </StepContent>
                 </Step>
