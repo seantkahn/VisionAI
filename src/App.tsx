@@ -28,7 +28,7 @@ import "./theme/variables.css";
 import TestConfig from "./pages/TestConfig";
 import Test from "./pages/Test";
 import Sample from "./components/PreTest";
-import SampleTest from "./components/PreTest";
+import PreTest2 from "./components/PreTest2";
 import PreTest from "./components/PreTest";
 import CameraPage from "./pages/CameraPage";
 import LetterTest from "./pages/LetterTest";
