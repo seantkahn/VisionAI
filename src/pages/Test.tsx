@@ -23,7 +23,7 @@ import { MdOutlinePhoneIphone } from "react-icons/md";
 import { FaRegLightbulb } from "react-icons/fa";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { RiKakaoTalkFill } from "react-icons/ri";
-import { GiPathDistance } from "react-icons/gi";
+import { TbRulerMeasure } from "react-icons/tb";
 import { PiHandTapBold } from "react-icons/pi";
 import "./Test.css"
 
@@ -94,17 +94,18 @@ const Test: React.FC = () => {
     {
       label: 'Cover eye that is not being tested',
       description: `If you are testing one eye, cover the eye that is not being tested. Wear glasses if you are looking to see if you need a new prescription.`,
-      icon: <AiFillEyeInvisible />,
+      icon: 
+      <AiFillEyeInvisible />,
     },
     {
       label: 'Say or press the letter that appears',
       description: `You will be prompted with five letters at a time. Say the letter and wait for the results.`,
-      icon: <RiKakaoTalkFill />,
+      icon: <div><RiKakaoTalkFill /><PiHandTapBold /></div>,
     },
     {
       label: 'Ensure you are far enough away',
       description: `Ensure you are 14 inches away from the camera for correct testing conditions. End the test when you can no longer read the letters or images clearly or if you cannot get at least 3 correct.`,
-      icon: <GiPathDistance />,
+      icon: <TbRulerMeasure />,
     },
   ];
 
