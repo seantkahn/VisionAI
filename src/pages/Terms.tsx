@@ -68,7 +68,7 @@ const Terms: React.FC = () => {
 
             <label className="checkbox-label">
               <h1>
-                <strong>I agree.</strong>
+                <strong>I Agree.</strong>
               </h1>
               <input
                 type="checkbox"
