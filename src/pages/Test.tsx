@@ -19,6 +19,12 @@ import StepLabel from '@mui/material/StepLabel';
 import StepContent from '@mui/material/StepContent';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import { MdOutlinePhoneIphone } from "react-icons/md";
+import { FaRegLightbulb } from "react-icons/fa";
+import { AiFillEyeInvisible } from "react-icons/ai";
+import { RiKakaoTalkFill } from "react-icons/ri";
+import { GiPathDistance } from "react-icons/gi";
+import { PiHandTapBold } from "react-icons/pi";
 import "./Test.css"
 
 interface LocationState {
@@ -78,30 +84,34 @@ const Test: React.FC = () => {
     {
       label: 'Distance',
       description: `Hold your face in front of your webcam and tap/click the screen once or twice for live distance calculations.`,
+      icon: <MdOutlinePhoneIphone />,
     },
     {
       label: 'Well-lit room',
-      description:
-        'Grant access to the webcam if prompted. Face should be parallel/level with camera and environment should be well lit.',
+      description: 'Grant access to the webcam if prompted. Face should be parallel/level with camera and environment should be well lit.',
+      icon: <FaRegLightbulb />,
     },
     {
       label: 'Cover eye that is not being tested',
       description: `If you are testing one eye, cover the eye that is not being tested. Wear glasses if you are looking to see if you need a new prescription.`,
+      icon: <AiFillEyeInvisible />,
     },
     {
       label: 'Say or press the letter that appears',
       description: `You will be prompted with five letters at a time. Say the letter and wait for the results.`,
+      icon: <RiKakaoTalkFill />,
     },
     {
       label: 'Ensure you are far enough away',
       description: `Ensure you are 14 inches away from the camera for correct testing conditions. End the test when you can no longer read the letters or images clearly or if you cannot get at least 3 correct.`,
+      icon: <GiPathDistance />,
     },
   ];
 
   return (
     <IonPage>
       <Header headerText="Instructions"/>
-      <IonContent fullscreen className="ion-padding" scrollY={false}>
+      <IonContent fullscreen className="ion-padding">
         <Container className="transparentBackground">
           <Box sx={{ maxWidth: 400}}>
             <Stepper activeStep={activeStep} orientation="vertical" >
@@ -109,9 +119,13 @@ const Test: React.FC = () => {
                 <Step key={step.label}>
                   <StepLabel classes = {{label: 'custom-step-label'}}>{step.label}</StepLabel>
                   <StepContent>
-                    <Typography className = "step-description" >{step.description}</Typography>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <Typography className="step-description">{step.description}</Typography>
+                      <div style={{ marginLeft: "auto", fontSize: "50px" }}>
+                        {step.icon}
+                      </div>
+                    </div>
                     <Box sx={{ mb: 2 }}>
-
                       {index !== 0 && (
                         <Button
                           buttonText="Previous"

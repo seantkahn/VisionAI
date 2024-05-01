@@ -213,6 +213,7 @@ const PreTest: React.FC = () => {
 
   return (
     <div className="PreTest" onClick={enableCam}>
+      <Webcam ref={webcamRef} className="webcam" mirrored={true} autoPlay  />
       <div className="camera-container">
         <div className="distance-box"></div>
         <canvas ref={canvasRef} className="output_canvas"/>

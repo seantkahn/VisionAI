@@ -225,7 +225,7 @@ const ShapeTest: React.FC = () => {
   return (
     <IonPage>
       <Header headerText="Vision Test" />
-      <IonContent className="ion-padding" scrollY={false}>
+      <IonContent className="ion-padding">
         <IonText style={{ textAlign: "center" }}>
           <h1 style={{fontWeight: "bold"}}>Shape Test: {buttonPressCount}/7</h1>
         </IonText>

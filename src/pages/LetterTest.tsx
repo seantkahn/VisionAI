@@ -7,6 +7,7 @@ import { eyeOutline } from "ionicons/icons";
 import "./LetterTest.css";
 import Button from "../components/Button/Button";
 import PreTest from "../components/PreTest2";
+import { color, style } from "@mui/system";
 interface LocationState {
   testMode?: string;
   eyeToExamine?: string;
@@ -196,7 +197,7 @@ const LetterTest: React.FC = () => {
 
   const handleLetterButtonClick = (letter: string) => {
     const updatedRandomString = randomString.map((obj) =>
-      obj.letter === letter ? { ...obj, recognized: true } : obj
+      obj.letter === letter ? { ...obj, recognized: true, pressed: true } : obj
     );
     setRandomString(updatedRandomString);
   };
@@ -204,11 +205,14 @@ const LetterTest: React.FC = () => {
   return (
     <IonPage>
       <Header headerText="Vision Test" />
-      <IonContent className="ion-padding" scrollY={false}>
+      <IonContent className="ion-padding">
         <IonText style={{ textAlign: "center" }}>
           <h1 style={{fontWeight: "bold"}}>Letter Test: {buttonPressCount}/7</h1>
         </IonText>
-        {/* <PreTest/> */}
+        <div className="letter-test-camera">
+          {/* <PreTest/> */}
+        </div>
+        
 
         <IonText className="testText" style={{ fontSize: `${fontSizePx}px` }}>
           {randomString.map((obj, index) => (
@@ -245,22 +249,37 @@ const LetterTest: React.FC = () => {
         <div className="keyboard-container">
           <div className="keyboard-row">
             {Array.from("QWERTYUIOP").map((letter, index) => (
-              <button key={index} onClick={() => handleLetterButtonClick(letter)}>
-                <p>{letter}</p>
+              <button
+              key={index}
+              onClick={() => handleLetterButtonClick(letter)} 
+              onMouseDown={(event) => (event.currentTarget as HTMLButtonElement).style.backgroundColor = 'gray'}
+              onMouseUp={(event) => (event.currentTarget as HTMLButtonElement).style.backgroundColor = ''}
+              >
+                <span><p>{letter}</p></span>
               </button>
             ))}
           </div>
           <div className="keyboard-row">
             {Array.from("ASDFGHJKL").map((letter, index) => (
-              <button key={index} onClick={() => handleLetterButtonClick(letter)}>
-                <p>{letter}</p>
+              <button
+              key={index}
+              onClick={() => handleLetterButtonClick(letter)} 
+              onMouseDown={(event) => (event.currentTarget as HTMLButtonElement).style.backgroundColor = 'gray'}
+              onMouseUp={(event) => (event.currentTarget as HTMLButtonElement).style.backgroundColor = ''}
+              >
+                <span><p>{letter}</p></span>
               </button>
             ))}
           </div>
           <div className="keyboard-row">
             {Array.from("ZXCVBNM").map((letter, index) => (
-              <button key={index} onClick={() => handleLetterButtonClick(letter)}>
-                <p>{letter}</p>
+              <button
+              key={index}
+              onClick={() => handleLetterButtonClick(letter)} 
+              onMouseDown={(event) => (event.currentTarget as HTMLButtonElement).style.backgroundColor = 'gray'}
+              onMouseUp={(event) => (event.currentTarget as HTMLButtonElement).style.backgroundColor = ''}
+              >
+                <span><p>{letter}</p></span>
               </button>
             ))}
           </div>
