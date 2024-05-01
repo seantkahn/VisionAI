@@ -78,7 +78,7 @@ const Terms: React.FC = () => {
               />
             </label>
           </div>
-
+          <br/><br/>
           <Button buttonText="Continue" onClickAction={continueToConfig} />
 
           <IonAlert
