@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import { eyeOutline } from "ionicons/icons";
 import "./LetterTest.css";
 import Button from "../components/Button/Button";
-import PreTest from "../components/PreTest2";
+import Pretest2 from "../components/PreTest2";
 import { color, style } from "@mui/system";
 interface LocationState {
   testMode?: string;
@@ -210,7 +210,7 @@ const LetterTest: React.FC = () => {
           <h1 style={{fontWeight: "bold"}}>Letter Test: {buttonPressCount}/7</h1>
         </IonText>
         <div className="letter-test-camera">
-          {/* <PreTest/> */}
+          <Pretest2/>
         </div>
         
 

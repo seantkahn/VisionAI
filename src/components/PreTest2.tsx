@@ -7,7 +7,7 @@ import * as cam from "@mediapipe/camera_utils";
 import Webcam from "react-webcam";
 import React, { useRef, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import "./Pretest.css";
+import "./Pretest2.css";
 import { IonPage, IonContent, IonButton, IonIcon } from "@ionic/react";
 import { eyeOutline } from "ionicons/icons";
 import SampleTest from "./PreTest";
@@ -16,7 +16,7 @@ import Button from "./Button/Button";
 import { useLocation } from "react-router-dom";
 
 
-const PreTest: React.FC = () => {
+const PreTest2: React.FC = () => {
   const [faceLandmarker, setFaceLandmarker] = useState<any>(null);
   const [webcamRunning, setWebcamRunning] = useState<boolean>(false);
   const webcamRef = useRef<Webcam>(null);
@@ -182,13 +182,13 @@ const PreTest: React.FC = () => {
         let distanceFromWebcamInches = distanceFromWebcamMm / 25.4;
         // console.log(`Distance from webcam: ${distanceFromWebcamInches.toFixed(2)} inches`);
           try{
-        canvasCtx.font = 'bold 22px Arial';
+        canvasCtx.font = 'bold 30px Arial';
         canvasCtx.fillStyle = 'White';
         canvasCtx.save(); // Save the current state
         // canvasCtx.scale(-1, 1); // Flip the context horizontally
         // canvasCtx.translate(-canvas.width, 0); // Translate the canvas context
-        canvasCtx.clearRect(0, 0, 200, 50); // Clear a rectangle for the text
-        canvasCtx.fillText(`Distance: ${distanceFromWebcamInches.toFixed(2)} inches`, 10, 30);
+        canvasCtx.clearRect(0, 0, 200, 100); // Clear a rectangle for the text
+        canvasCtx.fillText(`Distance From Camera: ${distanceFromWebcamInches.toFixed(2)} inches`, 60, 250);
         canvasCtx.restore(); // Restore the original state
           }
           catch(e){
@@ -212,11 +212,14 @@ const PreTest: React.FC = () => {
 
 
   return (
-    <div className="PreTest" onClick={enableCam}>
-      <Webcam ref={webcamRef} className="webcam" mirrored={true} autoPlay  />
-      <div className="camera-container">
-        <div className="distance-box"></div>
-        <canvas ref={canvasRef} className="output_canvas" />
+    <div className="PreTest2" onClick={enableCam}>
+      <Webcam ref={webcamRef} className="webcam2" mirrored={true} autoPlay style={{top: "0", left: "0"}}/>
+      <div className="camera-container2">
+        <div className="distance-box2">
+          <canvas ref={canvasRef} className="output_canvas2" />
+        </div>
+        
+        
       </div>
       
     </div>
@@ -224,4 +227,4 @@ const PreTest: React.FC = () => {
   );
 };
 
-export default PreTest;
+export default PreTest2;
