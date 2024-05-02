@@ -23,6 +23,7 @@
     justify-content: center;
         border-radius: 100px; /* Rounded edges */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.32); /* Shadow box */
+    border: 1px solid #FFF; /* Thin white border added */
 
 }
 

@@ -64,6 +64,7 @@
   margin-bottom: 10px;
   color: #fff;
   font-weight: bold;
+  
 }
 
 .text {
@@ -83,6 +84,8 @@
   width: 360px;
   border-radius: 50px; /* Rounded edges */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.32); /* Shadow box */
+  border: 1px solid #FFF; /* Thin white border added */
+
 }
 
 .letter-button h1 {
@@ -108,6 +111,8 @@
   width: 360px;
   border-radius: 50px; /* Rounded edges */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.32); /* Shadow box */
+  border: 1px solid #FFF; /* Thin white border added */
+
 
 }
 
@@ -130,6 +135,8 @@
   width: 360px;
   border-radius: 50px; /* Rounded edges */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.32); /* Shadow box */
+  border: 1px solid #FFF; /* Thin white border added */
+
 
 }
 
@@ -144,6 +151,7 @@
 .letter-button-container {
   margin-top: 20px;
   margin-bottom: 30px;
+  
 }
 
 .letter-next-button-container {
