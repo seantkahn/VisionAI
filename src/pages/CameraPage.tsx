@@ -37,6 +37,7 @@ useEffect(() => {
     stopWebcam();
   };
 }, []);
+
   const continueToExam = () => {
     console.log("Test Mode:", testMode, "Eye to Examine:", eyeToExamine);
     stopWebcam();
