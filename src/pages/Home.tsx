@@ -32,7 +32,7 @@ const Home: React.FC = () => {
   return (
     <IonPage>
       {/* <Header headerText="Vision Test" /> */}
-      <IonContent className="ion-padding" scrollY={false}>
+      <IonContent className="ion-padding">
 
         <h1 className="welcome-title">Welcome to the Vision AI App</h1>
 

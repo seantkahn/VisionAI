@@ -32,7 +32,7 @@ const About: React.FC = () => {
 
     <IonPage>
       <Header headerText="About Us"/>
-      <IonContent scrollY={false}>
+      <IonContent>
        {/* OLD WAY OF DOING BUTTONS LEAVING HERE UNTIL CERTAIN NEW WAY WORKS */}
         
       {/* <IonItem>

@@ -46,7 +46,7 @@ const TestConfig: React.FC = () => {
 
     <IonPage>
       <Header headerText="Personal Configuration"/>
-      <IonContent scrollY={false}>
+      <IonContent>
         <div className="question">
           <h1>Test with Letters or Images?</h1>  
         </div>

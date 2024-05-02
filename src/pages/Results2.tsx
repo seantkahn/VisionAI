@@ -71,7 +71,7 @@ const Results2: React.FC = () => {
   return (
     <IonPage>
       <Header headerText="Results" />
-      <IonContent className="ion-padding" scrollY={false}>
+      <IonContent className="ion-padding">
         <div className="results-container">
           <div className="screenshot" id="screenshot-content">
             <div className="box-container">
