@@ -25,6 +25,10 @@ const Home: React.FC = () => {
     history.push("./Terms");
   };
 
+  const goToAbout = () => {
+    history.push("./About");
+  };
+
   return (
     <IonPage>
       {/* <Header headerText="Vision Test" /> */}
@@ -37,6 +41,7 @@ const Home: React.FC = () => {
           accurate and reliable at home vision testing.
         </p>
         <Button buttonText="Continue" onClickAction={goToTermsPage} />
+        <Button buttonText="About Us" onClickAction={goToAbout} />
       </IonContent>
     </IonPage>
   );

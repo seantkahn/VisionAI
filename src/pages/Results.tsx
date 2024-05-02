@@ -29,11 +29,7 @@ const Results: React.FC = () => {
   const { testMode, eyeToExamine, eyeStrength } = location.state || {};
   const history = useHistory();
   const [screenshotData, setScreenshotData] = useState<string | null>(null);
-
-  const goToAbout = () => {
-    history.push("./About");
-  };
-  
+ 
   // Function to get the corresponding diopter for a given eye strength
   const getDiopterResult = (eyeStrength: string) => {
     const index = eyeStrengthValues.indexOf(eyeStrength);
@@ -81,7 +77,7 @@ const Results: React.FC = () => {
   return (
     <IonPage>
       <Header headerText="Results" />
-      <IonContent className="ion-padding" scrollY={false}>
+      <IonContent className="ion-padding">
         <div className="results-container">
           <div className="screenshot" id="screenshot-content">
             <div className="box-container">
@@ -129,10 +125,6 @@ const Results: React.FC = () => {
               </button>
             )}
             </div>
-            <button className="result-button" onClick={goToAbout}>
-              <h1>About Us</h1>
-              <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
-            </button>
         </div>
        
       </IonContent>
