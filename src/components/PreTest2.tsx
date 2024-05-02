@@ -141,7 +141,7 @@ const PreTest2: React.FC = () => {
       return;
     }
   
-    const maxWidth = Math.min(window.innerWidth, 640);
+    const maxWidth = Math.min(window.innerWidth, 340);
     const ratio = videoElement.videoHeight / videoElement.videoWidth;
   
     canvas.style.width = `${maxWidth}px`;
@@ -188,7 +188,7 @@ const PreTest2: React.FC = () => {
         // canvasCtx.scale(-1, 1); // Flip the context horizontally
         // canvasCtx.translate(-canvas.width, 0); // Translate the canvas context
         canvasCtx.clearRect(0, 0, 200, 100); // Clear a rectangle for the text
-        canvasCtx.fillText(`Distance From Camera: ${distanceFromWebcamInches.toFixed(2)} inches`, 60, 250);
+        canvasCtx.fillText(`Distance: ${distanceFromWebcamInches.toFixed(2)} inches`, 10, 140);
         canvasCtx.restore(); // Restore the original state
           }
           catch(e){

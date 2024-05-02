@@ -114,11 +114,12 @@ const Test: React.FC = () => {
       <Header headerText="Instructions"/>
       <IonContent fullscreen className="ion-padding">
         <Container className="transparentBackground">
+          <div style={{display: "flex", justifyContent: "center"}}>
           <Box sx={{ maxWidth: 400}}>
             <Stepper activeStep={activeStep} orientation="vertical" >
               {steps.map((step, index) => (
                 <Step key={step.label}>
-                  <StepLabel classes = {{label: 'custom-step-label'}}>{step.label}</StepLabel>
+                  <StepLabel classes = {{label: 'custom-step-label'}}><strong>{step.label}</strong></StepLabel>
                   <StepContent>
                     <div style={{ display: "flex", alignItems: "center" }}>
                       <Typography className="step-description">{step.description}</Typography>
@@ -149,6 +150,8 @@ const Test: React.FC = () => {
               </Paper>
             )}
           </Box>
+          </div>
+          
         </Container>
       </IonContent>
     </IonPage>
