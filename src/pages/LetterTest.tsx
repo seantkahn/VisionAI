@@ -94,11 +94,11 @@ const LetterTest: React.FC = () => {
   useEffect(() => {
     if ("webkitSpeechRecognition" in window) {
       const webkitRecognition = new window.webkitSpeechRecognition();
+    //failed attempt at adding a grammar preference/restriction
       // const speechRecognitionList = new window.webkitSpeechGrammarList();
       // const grammar =
       //   "#JSGF V1.0; grammar lettersAndNumbers; public <letterOrNumber> = (A | B | C | D | ... | Z | 0 | 1 | 2 | ... | 9);";
       // speechRecognitionList.addFromString(grammar, 1);
-  
       // webkitRecognition.grammars = speechRecognitionList;
       webkitRecognition.maxAlternatives = 1;
       webkitRecognition.continuous = true;
@@ -145,6 +145,8 @@ const LetterTest: React.FC = () => {
     }
   }, []);
 
+
+  
   const increaseFontSize = () => {
     if (visualAcuityIndex < visualAcuityMeasurements.length - 1) {
       setVisualAcuityIndex(visualAcuityIndex + 1);
