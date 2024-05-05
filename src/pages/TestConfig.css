@@ -64,4 +64,9 @@
     padding-right: 10px;
   }
 
+  .question-options .active {
+    background-color: #000; /* Set the background color for active buttons */
+    color: #fff; /* Set the text color for active buttons */
+  }
+
 }
