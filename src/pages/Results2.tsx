@@ -63,7 +63,11 @@ const Results2: React.FC = () => {
       history.push("/LetterTest2", { testMode, eyeToExamine, eyeStrength, diopterResult });
     } else if (testMode === "Images") {
       history.push("/ShapeTest2", { testMode, eyeToExamine, eyeStrength, diopterResult });
-    }  };
+    }  
+  };
+  const handleResetTest = () => {
+    history.push("/TestConfig"); // Navigate back to the test configuration page
+  };
   return (
     <IonPage>
       <Header headerText="Results" />
@@ -106,15 +110,21 @@ const Results2: React.FC = () => {
               <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
             </button>
             
-          </div> 
+            </div>
           <div className="fine-tune-button-container">
           <div></div>
             {eyeStrength !== '20/20' && (
               <button className="result-button" onClick={handleFineTunePrescription}>
-                <h1>Fine Tune Prescription Further?</h1>
+                <h1>Refine Prescription?</h1>
               </button>
             )}
             </div>
+            <div className="result-button-container">
+            <button className="result-button" onClick={handleResetTest}>
+              <h1>Reset Test</h1>
+              <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
+            </button>
+          </div>
         </div>
        
       </IonContent>

@@ -1,3 +1,4 @@
+
 #container {
   text-align: center;
   position: absolute;
@@ -37,18 +38,29 @@ body{
   linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(179,96,255,1) 100%);
   } */
 .welcome-title {
-  margin-top: 200px;
-  font-weight: bold;
-  font-size: 50px;
-  text-align: center;
+  margin-top: 10vh;
+  font-weight: 700;
+  font-size: 3vw;
+    text-align: center;
+
 }
 
 .app-description {
-  padding-left: 32px;
-  padding-right: 32px;
-  padding-bottom: 30px;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  padding-bottom: 5vh;
   color: #555555;
   text-align: center;
-  font-size: 21px;
+  font-size: 1vw;
 
+}
+@media (max-width: 600px) {
+  .welcome-title {
+      font-size: 12vw;
+  }
+  .app-description {
+    padding-left: 10vw;
+    padding-right: 10vw;
+    font-size: 5.2vw;
+}
 }

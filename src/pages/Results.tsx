@@ -66,6 +66,7 @@ const Results: React.FC = () => {
       console.error('Error taking or saving screenshot', e);
     }
   };
+  
   const handleFineTunePrescription = () => {
     const firstPage = eyeStrengthValues.indexOf(eyeStrength ?? "")
     if (testMode === "Letters") {
@@ -73,6 +74,9 @@ const Results: React.FC = () => {
     } else if (testMode === "Images") {
       history.push("/ShapeTest2", { testMode, eyeToExamine, eyeStrength, diopterResult,firstPage });
     }  
+  };
+  const handleResetTest = () => {
+    history.push("/TestConfig"); // Navigate back to the test configuration page
   };
   return (
     <IonPage>
@@ -125,6 +129,12 @@ const Results: React.FC = () => {
               </button>
             )}
             </div>
+            <div className="result-button-container">
+            <button className="result-button" onClick={handleResetTest}>
+              <h1>Reset Test</h1>
+              <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
+            </button>
+          </div>
         </div>
        
       </IonContent>
