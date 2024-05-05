@@ -182,15 +182,12 @@ const PreTest2: React.FC = () => {
         let distanceFromWebcamInches = distanceFromWebcamMm / 25.4;
         // console.log(`Distance from webcam: ${distanceFromWebcamInches.toFixed(2)} inches`);
           try{
-        canvasCtx.font = 'bold 30px Arial';
-        canvasCtx.fillStyle = 'White';
-        canvasCtx.save(); // Save the current state
-        // canvasCtx.scale(-1, 1); // Flip the context horizontally
-        // canvasCtx.translate(-canvas.width, 0); // Translate the canvas context
-        canvasCtx.clearRect(0, 0, 200, 100); // Clear a rectangle for the text
-        canvasCtx.fillText(`Distance: ${distanceFromWebcamInches.toFixed(2)} inches`, 10, 140);
-        canvasCtx.restore(); // Restore the original state
-          }
+            canvasCtx.font = 'bold 30px Arial';
+            canvasCtx.fillStyle = 'white';
+            canvasCtx.textAlign = 'center'; // Center horizontally
+            canvasCtx.textBaseline = 'middle'; // Center vertically
+            canvasCtx.fillText(`Distance: ${distanceFromWebcamInches.toFixed(2)} inches`, canvas.width / 2, canvas.height / 2);
+                      }
           catch(e){
             // console.log("error drawing distance on canvas",e);
           }
