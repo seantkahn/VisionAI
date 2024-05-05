@@ -98,7 +98,7 @@ const PreTest2: React.FC = () => {
 
   const onWebcamStart = () => {
     if (webcamRunning) {
-        console.log('Trying to call predictwebcam from onwebcamstart');
+        // console.log('Trying to call predictwebcam from onwebcamstart');
 
       predictWebcam();
     }
@@ -108,7 +108,7 @@ const PreTest2: React.FC = () => {
     predictWebcam();
 
     if (!faceLandmarker) {
-      console.log("Wait! FaceLandmarker not loaded yet.");
+      // console.log("Wait! FaceLandmarker not loaded yet.");
       return;
     }
 
@@ -125,7 +125,7 @@ const PreTest2: React.FC = () => {
   };
 
   const predictWebcam = async () => {
-    console.log('predictWebcam called');
+    // console.log('predictWebcam called');
 
     if (!faceLandmarker || !webcamRef.current || !canvasRef.current) {
       return;
@@ -151,22 +151,22 @@ const PreTest2: React.FC = () => {
     canvas.height = maxWidth * ratio;
   
     try {
-        console.log('Trying face landmark detection');
+        // console.log('Trying face landmark detection');
 
       let results = await faceLandmarker.detectForVideo(videoElement, performance.now());
-      console.log('Detection results:', results);
-      console.log('Face landmarks:', results.faceLandmarks[0]);
-      console.log('Detection results:', results);
+      // console.log('Detection results:', results);
+      // console.log('Face landmarks:', results.faceLandmarks[0]);
+      // console.log('Detection results:', results);
 
       if (results.faceLandmarks) {
         let landmarks = results.faceLandmarks;
         for (landmarks in results.faceLandmarks) {
 
-        console.log('Face landmarks:', results.faceLandmarks[0]);
-        console.log('Specific landmarks:', results.faceLandmarks[0][468], results.faceLandmarks[0][473]);
-        console.log('Landmarks length:', landmarks.length);
-        console.log('Landmark 468:', results.faceLandmarks[0][468]);
-        console.log('Landmark 473:', results.faceLandmarks[0][473]);
+        // console.log('Face landmarks:', results.faceLandmarks[0]);
+        // console.log('Specific landmarks:', results.faceLandmarks[0][468], results.faceLandmarks[0][473]);
+        // console.log('Landmarks length:', landmarks.length);
+        // console.log('Landmark 468:', results.faceLandmarks[0][468]);
+        // console.log('Landmark 473:', results.faceLandmarks[0][473]);
         let pointLeft = { x: results.faceLandmarks[0][468].x, y: results.faceLandmarks[0][468].y }; // Left eye keypoint
         let pointRight = { x: results.faceLandmarks[0][473].x, y: results.faceLandmarks[0][473].y }; // Right eye keypoint
   
@@ -192,13 +192,13 @@ const PreTest2: React.FC = () => {
         canvasCtx.restore(); // Restore the original state
           }
           catch(e){
-            console.log("error drawing distance on canvas",e);
+            // console.log("error drawing distance on canvas",e);
           }
-        console.log(`Distance from webcam: ${distanceFromWebcamInches.toFixed(2)} inches`);
+        // console.log(`Distance from webcam: ${distanceFromWebcamInches.toFixed(2)} inches`);
       }
     }
     } catch (error) {
-      console.error("error in predictWebcam: ", error);
+      // console.error("error in predictWebcam: ", error);
     }
 
     if (webcamRunning) {
