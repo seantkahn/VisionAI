@@ -127,9 +127,9 @@ Button {
   height: auto; /* Maintain aspect ratio */
 }
 
-@media only screen and (max-width: 500px) {
+/* @media only screen and (max-width: 500px) {
   .camera-container, .webcam, .output_canvas {
     width: 320px;
     height: 240px;
   }
-}
+} */

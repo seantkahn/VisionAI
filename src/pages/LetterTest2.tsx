@@ -250,23 +250,44 @@ const LetterTest2: React.FC = () => {
         <div className="keyboard-container">
           <div className="keyboard-row">
             {Array.from("QWERTYUIOP").map((letter, index) => (
-              <button key={index} onClick={() => handleLetterButtonClick(letter)}>
-                <p>{letter}</p>
-              </button>
+              <button
+              key={index}
+              className="keyboard-button" // Add this class name
+              onClick={() => handleLetterButtonClick(letter)} 
+              onMouseDown={(event) => (event.currentTarget as HTMLButtonElement).style.backgroundColor = ''}
+              onMouseUp={(event) => (event.currentTarget as HTMLButtonElement).style.backgroundColor = ''}
+              style={{ backgroundColor: randomString.find(obj => obj.letter === letter)?.recognized ? 'green' : '' }}
+            >
+              <span><p>{letter}</p></span>
+            </button>
             ))}
           </div>
           <div className="keyboard-row">
             {Array.from("ASDFGHJKL").map((letter, index) => (
-              <button key={index} onClick={() => handleLetterButtonClick(letter)}>
-                <p>{letter}</p>
-              </button>
+              <button
+              key={index}
+              className="keyboard-button" // Add this class name
+              onClick={() => handleLetterButtonClick(letter)} 
+              onMouseDown={(event) => (event.currentTarget as HTMLButtonElement).style.backgroundColor = ''}
+              onMouseUp={(event) => (event.currentTarget as HTMLButtonElement).style.backgroundColor = ''}
+              style={{ backgroundColor: randomString.find(obj => obj.letter === letter)?.recognized ? 'green' : '' }}
+            >
+              <span><p>{letter}</p></span>
+            </button>
             ))}
           </div>
           <div className="keyboard-row">
             {Array.from("ZXCVBNM").map((letter, index) => (
-              <button key={index} onClick={() => handleLetterButtonClick(letter)}>
-                <p>{letter}</p>
-              </button>
+              <button
+              key={index}
+              className="keyboard-button" // Add this class name
+              onClick={() => handleLetterButtonClick(letter)} 
+              onMouseDown={(event) => (event.currentTarget as HTMLButtonElement).style.backgroundColor = ''}
+              onMouseUp={(event) => (event.currentTarget as HTMLButtonElement).style.backgroundColor = ''}
+              style={{ backgroundColor: randomString.find(obj => obj.letter === letter)?.recognized ? 'green' : '' }}
+            >
+              <span><p>{letter}</p></span>
+            </button>
             ))}
           </div>
         </div>

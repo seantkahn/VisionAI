@@ -56,12 +56,7 @@ useEffect(() => {
         <div>
           <PreTest />
         </div>
-        
         <div className="continue-button-div">
-          <br/><br/>
-          <br/><br/>
-
-          <br/><br/>
           <Button buttonText="Continue" onClickAction={continueToExam} />
         </div>
       </IonContent>
