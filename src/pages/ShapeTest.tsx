@@ -220,6 +220,22 @@ const ShapeTest: React.FC = () => {
       obj.keyword === keyword ? { ...obj, recognized: true } : obj
     );
     setRandomString(updatedRandomString);
+  
+    // Update keyboard buttons
+    const iconButtons = document.querySelectorAll(".shape-container button");
+    iconButtons.forEach((button) => {
+      const buttonKeyword = button.getAttribute("data-keyword");
+      if (buttonKeyword === keyword) {
+        const buttonElement = button as HTMLButtonElement;
+        const isRecognized = updatedRandomString.find((obj) => obj.keyword === keyword)?.recognized;
+        buttonElement.style.backgroundColor = isRecognized ? "green" : "red";
+  
+        // Flash background color
+        setTimeout(() => {
+          buttonElement.style.backgroundColor = ""; // Reset background color after a delay
+        }, 500); // Adjust the delay (in milliseconds) as needed for the flashing effect
+      }
+    });
   };
 
   return (
@@ -272,23 +288,23 @@ const ShapeTest: React.FC = () => {
           <div className="shape-container">
           <div className="shape-row">
             {icons.slice(0, 3).map((obj, index) => (
-              <button key={index} onClick={() => handleIconClick(obj.keyword)}>
-                {obj.icon}
-              </button>
+              <button key={index} data-keyword={obj.keyword} onClick={() => handleIconClick(obj.keyword)}>
+              {obj.icon}
+            </button>
             ))}
           </div>
           <div className="shape-row">
             {icons.slice(3,6).map((obj, index) => (
-              <button key={index} onClick={() => handleIconClick(obj.keyword)}>
-                {obj.icon}
-              </button>
+              <button key={index} data-keyword={obj.keyword} onClick={() => handleIconClick(obj.keyword)}>
+              {obj.icon}
+            </button>
             ))}
           </div>
           <div className="shape-row">
             {icons.slice(6).map((obj, index) => (
-              <button key={index} onClick={() => handleIconClick(obj.keyword)}>
-                {obj.icon}
-              </button>
+              <button key={index} data-keyword={obj.keyword} onClick={() => handleIconClick(obj.keyword)}>
+              {obj.icon}
+            </button>
             ))}
           </div>
         </div>
