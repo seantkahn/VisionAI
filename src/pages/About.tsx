@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   IonPage,
   IonContent,
+  IonText,
   IonDatetime,
   IonItem,
   IonLabel,
@@ -33,6 +34,32 @@ const About: React.FC = () => {
     <IonPage>
       <Header headerText="About Us"/>
       <IonContent>
+        <IonText style={{  }}>
+          <h1 style={{fontWeight: "bold", fontSize: "6vh", textAlign: "center"}}>About</h1>
+          <div className="about-details">
+            <div>
+                <h2 style={{fontWeight: "bold", textAlign: "center", textDecoration: "underline", fontStyle: "normal"}}>Made in</h2>
+                <h2 style={{textAlign: "center"}}>Pace University<br />CS389 Software Engineering</h2>
+            </div>
+            <div>
+                <h2 style={{fontWeight: "bold", textAlign: "center", textDecoration: "underline", fontStyle: "normal"}}>Created for:</h2>
+                <h2 style={{textAlign: "center"}}>Dr. Deep Parikh</h2>
+            </div>
+            <div>
+                <h2 style={{fontWeight: "bold", textAlign: "center", textDecoration: "underline", fontStyle: "normal"}}>Vision AI Team:</h2>
+                <h2 style={{textAlign: "center"}}>Sean Kahn<br />Daniel White<br />Cristian Bolanos<br />Jack Lasko</h2>
+            </div>
+            <div>
+                <h2 style={{fontWeight: "bold", textAlign: "center", textDecoration: "underline", fontStyle: "normal"}}>Acknowledgement:</h2>
+                <h2 style={{textAlign: "center", marginLeft: "2vh", marginRight: "2vh"}}> Thank you to Professor Thomas Schmidt for connecting us with Dr. Parikh and for working with us for the whole school year.</h2>
+            </div>
+            <div>
+                <h2 style={{fontWeight: "bold", textAlign: "center", textDecoration: "underline", fontStyle: "normal"}}>Contact:</h2>
+                <h2 style={{textAlign: "center", marginLeft: "2vh", marginRight: "2vh"}}>Dr. Parikh: <br /></h2>
+            </div>
+          </div>
+        </IonText>
+
       
 
       </IonContent>
