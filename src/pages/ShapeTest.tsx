@@ -13,7 +13,7 @@ import { WiTrain } from "react-icons/wi";
 import { eyeOutline } from "ionicons/icons";
 import Button from "../components/Button/Button";
 import "./ShapeTest.css";
-import PreTest from "../components/PreTest2";
+import PreTest2 from "../components/PreTest2";
 
 interface LocationState {
   testMode?: string;
@@ -242,10 +242,10 @@ const ShapeTest: React.FC = () => {
     <IonPage>
       <Header headerText="Vision Test" />
       <IonContent className="ion-padding">
+      <PreTest2/>
         <IonText style={{ textAlign: "center" }}>
           <h1 style={{fontWeight: "bold"}}>Shape Test: {buttonPressCount}/7</h1>
         </IonText>
-        {/* <PreTest/> */}
         <IonText className="testIcon" style={{ fontSize: `${fontSizePx}px` }}>
           <div className="icons-div">
             {randomString.map((obj, index) => (
