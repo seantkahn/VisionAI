@@ -111,14 +111,14 @@ const Results2: React.FC = () => {
             </button>
             
             </div>
-          <div className="fine-tune-button-container">
-          <div></div>
+          {/* <div className="fine-tune-button-container">
+            <div></div>
             {eyeStrength !== '20/20' && (
               <button className="result-button" onClick={handleFineTunePrescription}>
                 <h1>Refine Prescription?</h1>
               </button>
             )}
-            </div>
+            </div> */}
             <div className="result-button-container">
             <button className="result-button" onClick={handleResetTest}>
               <h1>Reset Test</h1>
