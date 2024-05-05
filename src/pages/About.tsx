@@ -33,38 +33,7 @@ const About: React.FC = () => {
     <IonPage>
       <Header headerText="About Us"/>
       <IonContent>
-       {/* OLD WAY OF DOING BUTTONS LEAVING HERE UNTIL CERTAIN NEW WAY WORKS */}
-        
-      {/* <IonItem>
-          <IonLabel position="stacked">
-           
-          </IonLabel>
-          <IonSelect
-            label = "Letters or Images?"
-            value={testMode}
-            placeholder="Select Letters or Images"
-            onIonChange={(e) => setTestMode(e.detail.value)}
-          >
-            <IonSelectOption value="Letters">Letters</IonSelectOption>
-            <IonSelectOption value="Images">Images</IonSelectOption>
-          </IonSelect>
-        </IonItem> */}
-
-        {/* <IonItem>
-          <IonLabel position="stacked">
-            
-          </IonLabel>
-          <IonSelect
-            label="Which eye?"
-            value={eyeToExamine}
-            placeholder="Select an eye"
-            onIonChange={(e) => setEyeToExamine(e.detail.value)}
-          >
-            <IonSelectOption value="Left Eye">Left Eye</IonSelectOption>
-            <IonSelectOption value="Right Eye">Right Eye</IonSelectOption>
-            <IonSelectOption value="Both">Both</IonSelectOption>
-          </IonSelect>
-        </IonItem> */}
+      
 
       </IonContent>
       
