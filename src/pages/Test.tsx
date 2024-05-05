@@ -99,7 +99,7 @@ const Test: React.FC = () => {
     },
     {
       label: 'Say or press the letter that appears',
-      description: `You will be prompted with five letters at a time. Say the letter and wait for the results.`,
+      description: `You will be prompted with several letters. Say or Tap the letter and wait for the results.`,
       icon: <div><RiKakaoTalkFill /><PiHandTapBold /></div>,
     },
     {
