@@ -53,13 +53,13 @@ const TestConfig: React.FC = () => {
         <div className="question-options">
           <Row>
               <Col>
-                <button onClick={() => setTestMode("Letters")} className={testMode === "Letters" ? "active" : ""}>
+                <button onClick={() => setTestMode("Letters")} className={testMode === "Letters" ? "active" : "inactive"}>
                   <h1>Letters</h1>
                 </button>
                 
               </Col>
               <Col>
-                <button onClick={() => setTestMode("Images")} className={testMode === "Images" ? "active" : ""}>
+                <button onClick={() => setTestMode("Images")} className={testMode === "Images" ? "active" : "inactive"}>
                   <h1>Images</h1>
                 </button>
               </Col>
@@ -72,18 +72,18 @@ const TestConfig: React.FC = () => {
         <div className="question-options">
           <Row>
               <Col>
-                <button onClick={() => setEyeToExamine("Left")} className={eyeToExamine === "Left" ? "active" : ""}>
+                <button onClick={() => setEyeToExamine("Left")} className={eyeToExamine === "Left" ? "active" : "inactive"}>
                   <h1>Left</h1>
                 </button>
                 
               </Col>
               <Col>
-                <button onClick={() => setEyeToExamine("Both")} className={eyeToExamine === "Both" ? "active" : ""}>
+                <button onClick={() => setEyeToExamine("Both")} className={eyeToExamine === "Both" ? "active" : "inactive"}>
                   <h1>Both</h1>
                 </button>
               </Col>
               <Col>
-                <button onClick={() => setEyeToExamine("Right")} className={eyeToExamine === "Right" ? "active" : ""}>
+                <button onClick={() => setEyeToExamine("Right")} className={eyeToExamine === "Right" ? "active" : "inactive"}>
                   <h1>Right</h1>
                 </button>
               </Col>
