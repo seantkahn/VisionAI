@@ -1,0 +1,24 @@
+.PreTest {
+  position: absolute;
+}
+
+.distance-container {
+  position: absolute;
+  z-index: 99;
+  top: -10%;
+  left: -5%;
+  font-size: 3rem;
+  font-family: "Roboto", sans-serif;
+  color: white;
+}
+
+.distance-number {
+  color: orange;
+  font-size: 3rem;
+  background-color: black;
+  padding: 0.5rem;
+  margin-left: 20px;
+  border-radius: 50%;
+  width: fit-content;
+  text-align: center;
+}

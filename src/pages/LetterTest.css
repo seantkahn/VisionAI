@@ -64,7 +64,6 @@
   margin-bottom: 10px;
   color: #fff;
   font-weight: bold;
-  
 }
 
 .text {
@@ -72,11 +71,10 @@
   color: #fff;
 }
 
-
 .letter-button {
   background-color: #000;
   /* background-color: #1818de;  */
-  color: #FFF;
+  color: #fff;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -84,8 +82,7 @@
   width: 360px;
   border-radius: 50px; /* Rounded edges */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.32); /* Shadow box */
-  border: 1px solid #FFF; /* Thin white border added */
-
+  border: 1px solid #fff; /* Thin white border added */
 }
 
 .letter-button h1 {
@@ -103,7 +100,7 @@
 .letter-next-button {
   background-color: #000;
   /* background-color: #1818de; */
-  color: #FFF;
+  color: #fff;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -111,9 +108,7 @@
   width: 360px;
   border-radius: 50px; /* Rounded edges */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.32); /* Shadow box */
-  border: 1px solid #FFF; /* Thin white border added */
-
-
+  border: 1px solid #fff; /* Thin white border added */
 }
 
 .letter-next-button h1 {
@@ -127,7 +122,7 @@
 .letter-end-button {
   background-color: #000;
   /* background-color: #1818de; */
-  color: #FFF;
+  color: #fff;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -135,9 +130,7 @@
   width: 360px;
   border-radius: 50px; /* Rounded edges */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.32); /* Shadow box */
-  border: 1px solid #FFF; /* Thin white border added */
-
-
+  border: 1px solid #fff; /* Thin white border added */
 }
 
 .letter-end-button h1 {
@@ -151,7 +144,6 @@
 .letter-button-container {
   margin-top: 20px;
   margin-bottom: 30px;
-  
 }
 
 .letter-next-button-container {
@@ -169,7 +161,7 @@
 }
 
 .pressed {
-  color: #CCC;
+  color: #ccc;
 }
 
 .keyboard-row {
@@ -185,13 +177,12 @@
   width: 58px;
   height: 58px;
   background-color: #000;
-  color: #FFF;
-  border: 0.5px solid #FFF;
+  color: #fff;
+  border: 0.5px solid #fff;
   border-radius: 10px;
   font-weight: bold;
   margin: 2px;
 }
-
 
 .keyboard-row p {
   font-size: 46px; /* Adjust font-size as needed */

@@ -13,18 +13,25 @@ import { WiTrain } from "react-icons/wi";
 import { eyeOutline } from "ionicons/icons";
 import Button from "../components/Button/Button";
 import "./ShapeTest.css";
-import PreTest from "../components/PreTest2";
+import PreTest2 from "../components/PreTest2";
+import Distance from "../components/Button/Distance";
 
 interface LocationState {
   testMode?: string;
   eyeToExamine?: string;
   eyeStrength?: string;
+  distance?: number;
 }
 
 function getDynamicFontSize(physicalSizeMm: any) {
   function getDevicePixelRatio() {
-    if (window.screen.systemXDPI !== undefined && window.screen.logicalXDPI !== undefined && window.screen.systemXDPI > window.screen.logicalXDPI) {
-      return window.screen.systemXDPI / window.screen.logicalXDPI;} 
+    if (
+      window.screen.systemXDPI !== undefined &&
+      window.screen.logicalXDPI !== undefined &&
+      window.screen.systemXDPI > window.screen.logicalXDPI
+    ) {
+      return window.screen.systemXDPI / window.screen.logicalXDPI;
+    }
     if (window.devicePixelRatio !== undefined) {
       return window.devicePixelRatio;
     }
@@ -37,7 +44,7 @@ function getDynamicFontSize(physicalSizeMm: any) {
   return physicalSizeInches * effectivePpi;
 }
 
-const generateRandomString = (count:number) => {
+const generateRandomString = (count: number) => {
   const icons = [
     { icon: <CiApple />, keyword: "apple" },
     { icon: <PiBirdBold />, keyword: "bird" },
@@ -52,64 +59,83 @@ const generateRandomString = (count:number) => {
 
   let randomString = [];
   let usedKeywords = new Set();
-  if (count<1){
-
+  if (count < 1) {
     while (randomString.length < 3) {
       const randomIndex = Math.floor(Math.random() * icons.length);
       const selectedIcon = icons[randomIndex];
 
       if (!usedKeywords.has(selectedIcon.keyword)) {
         usedKeywords.add(selectedIcon.keyword);
-        randomString.push({ icon: selectedIcon.icon, keyword: selectedIcon.keyword, recognized: false });
+        randomString.push({
+          icon: selectedIcon.icon,
+          keyword: selectedIcon.keyword,
+          recognized: false,
+        });
       }
     }
 
     return randomString;
   }
-  if (count==1){
-
+  if (count == 1) {
     while (randomString.length < 4) {
       const randomIndex = Math.floor(Math.random() * icons.length);
       const selectedIcon = icons[randomIndex];
 
       if (!usedKeywords.has(selectedIcon.keyword)) {
         usedKeywords.add(selectedIcon.keyword);
-        randomString.push({ icon: selectedIcon.icon, keyword: selectedIcon.keyword, recognized: false });
+        randomString.push({
+          icon: selectedIcon.icon,
+          keyword: selectedIcon.keyword,
+          recognized: false,
+        });
       }
     }
 
     return randomString;
-  }
-  else{
+  } else {
     while (randomString.length < 5) {
       const randomIndex = Math.floor(Math.random() * icons.length);
       const selectedIcon = icons[randomIndex];
-  
+
       if (!usedKeywords.has(selectedIcon.keyword)) {
         usedKeywords.add(selectedIcon.keyword);
-        randomString.push({ icon: selectedIcon.icon, keyword: selectedIcon.keyword, recognized: false });
+        randomString.push({
+          icon: selectedIcon.icon,
+          keyword: selectedIcon.keyword,
+          recognized: false,
+        });
       }
     }
-  
+
     return randomString;
   }
 };
 
-
 const ShapeTest: React.FC = () => {
   const location = useLocation<LocationState>();
-  const { testMode, eyeToExamine } = location.state || {};
+  const { testMode, eyeToExamine, distance } = location.state || {};
   const history = useHistory();
   const [randomString, setRandomString] = useState(generateRandomString(0));
   const [buttonPressCount, setButtonPressCount] = useState(0);
-  const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
-  
+  const [recognition, setRecognition] = useState<SpeechRecognition | null>(
+    null
+  );
+
   const [isListening, setIsListening] = useState(false);
   const [visualAcuityIndex, setVisualAcuityIndex] = useState(7);
   const visualAcuityMeasurements = [0.8, 1, 1.2, 1.5, 2, 2.8, 4, 8];
-  const eyeStrengthValues = ['20/20', '20/25', '20/30', '20/40', '20/50', '20/70', '20/100', '20/200'];
-  //const diopters = [0.00,-0.25,-0.50,-0.75,-1.00,-1.25,-1.50,-2.00,-2.50]; 
-  const diopters = [0.00, 0.5, 1.00, 1.50, 2.00, 2.75, 4.00, 6.00];
+  const eyeStrengthValues = [
+    "20/20",
+    "20/25",
+    "20/30",
+    "20/40",
+    "20/50",
+    "20/70",
+    "20/100",
+    "20/200",
+  ];
+  //const diopters = [0.00,-0.25,-0.50,-0.75,-1.00,-1.25,-1.50,-2.00,-2.50];
+  const diopters = [0.0, 0.5, 1.0, 1.5, 2.0, 2.75, 4.0, 6.0];
   const icons = [
     { icon: <CiApple />, keyword: "apple" },
     { icon: <PiBirdBold />, keyword: "bird" },
@@ -137,19 +163,19 @@ const ShapeTest: React.FC = () => {
       // const grammar =
       // "#JSGF V1.0; grammar keywords; public <keyword> = (apple | bird | butterfly | car | dog | cat | horse | train | boat);";
       // speechRecognitionList.addFromString(grammar, 1);
-  
+
       // webkitRecognition.grammars = speechRecognitionList;
       webkitRecognition.maxAlternatives = 1;
       webkitRecognition.continuous = true;
       webkitRecognition.interimResults = true;
       webkitRecognition.lang = "en-US";
-  
+
       webkitRecognition.onresult = (event) => {
         for (let i = event.resultIndex; i < event.results.length; ++i) {
           let transcript = event.results[i][0].transcript.trim().toLowerCase();
-  
+
           console.log("Transcript:", transcript);
-  
+
           setRandomString((currentString) =>
             currentString.map((obj) =>
               obj.keyword === transcript ? { ...obj, recognized: true } : obj
@@ -157,7 +183,7 @@ const ShapeTest: React.FC = () => {
           );
         }
       };
-  
+
       setRecognition(webkitRecognition);
     } else {
       alert(
@@ -169,25 +195,38 @@ const ShapeTest: React.FC = () => {
   const updateRandomIcons = () => {
     const newCount = buttonPressCount + 1;
     setButtonPressCount(newCount);
-  
+
     if (newCount > 7) {
       endTest();
     } else {
-      const currentGreenIconCount = randomString.filter((obj) => obj.recognized).length;
-  
+      const currentGreenIconCount = randomString.filter(
+        (obj) => obj.recognized
+      ).length;
+
       if (currentGreenIconCount >= 3) {
         decreaseFontSize();
       }
-  
+
       setRandomString(generateRandomString(newCount));
     }
   };
+  useEffect(() => {
+    const allIconsAreGreen = randomString.every((obj) => obj.recognized);
+    if (allIconsAreGreen) {
+      updateRandomIcons();
+    }
+  }, [randomString]);
 
   const endTest = () => {
     setButtonPressCount(0);
     const selectedEyeStrength = eyeStrengthValues[visualAcuityIndex];
     const diopterResult = diopters[visualAcuityIndex];
-    history.push("./Results", { testMode, eyeToExamine, diopter: diopterResult, eyeStrength: selectedEyeStrength });
+    history.push("./Results", {
+      testMode,
+      eyeToExamine,
+      diopter: diopterResult,
+      eyeStrength: selectedEyeStrength,
+    });
   };
 
   const toggleListening = () => {
@@ -220,16 +259,18 @@ const ShapeTest: React.FC = () => {
       obj.keyword === keyword ? { ...obj, recognized: true } : obj
     );
     setRandomString(updatedRandomString);
-  
+
     // Update keyboard buttons
     const iconButtons = document.querySelectorAll(".shape-container button");
     iconButtons.forEach((button) => {
       const buttonKeyword = button.getAttribute("data-keyword");
       if (buttonKeyword === keyword) {
         const buttonElement = button as HTMLButtonElement;
-        const isRecognized = updatedRandomString.find((obj) => obj.keyword === keyword)?.recognized;
+        const isRecognized = updatedRandomString.find(
+          (obj) => obj.keyword === keyword
+        )?.recognized;
         buttonElement.style.backgroundColor = isRecognized ? "green" : "red";
-  
+
         // Flash background color
         setTimeout(() => {
           buttonElement.style.backgroundColor = ""; // Reset background color after a delay
@@ -242,22 +283,27 @@ const ShapeTest: React.FC = () => {
     <IonPage>
       <Header headerText="Vision Test" />
       <IonContent className="ion-padding">
+        <Distance />
         <IonText style={{ textAlign: "center" }}>
-          <h1 style={{fontWeight: "bold"}}>Shape Test: {buttonPressCount}/7</h1>
+          <h1 style={{ fontWeight: "bold" }}>
+            Shape Test: {buttonPressCount}/7
+          </h1>
         </IonText>
-        {/* <PreTest/> */}
         <IonText className="testIcon" style={{ fontSize: `${fontSizePx}px` }}>
           <div className="icons-div">
             {randomString.map((obj, index) => (
               <span
                 key={index}
-                style={{ color: obj.recognized ? "green" : "black", marginRight: "5px", marginLeft: "5px" }}
+                style={{
+                  color: obj.recognized ? "green" : "black",
+                  marginRight: "5px",
+                  marginLeft: "5px",
+                }}
               >
                 {obj.icon}
               </span>
             ))}
           </div>
-          
         </IonText>
 
         {/* <IonButton expand="full" onClick={toggleListening}>
@@ -269,46 +315,77 @@ const ShapeTest: React.FC = () => {
         <div className="shape-buttons">
           <div className="speech-button-container">
             <button className="speech-button" onClick={toggleListening}>
-              <h1>{isListening ? "Stop Speech Recognition" : "Start Speech Recognition"}</h1>
-              <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
+              <h1>
+                {isListening
+                  ? "Stop Speech Recognition"
+                  : "Start Speech Recognition"}
+              </h1>
+              <IonIcon
+                className="eye"
+                slot="end"
+                size="large"
+                icon={eyeOutline}
+              ></IonIcon>
             </button>
           </div>
           <div className="speech-next-button-container">
             <button className="speech-next-button" onClick={updateRandomIcons}>
               <h1>Next</h1>
-              <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
+              <IonIcon
+                className="eye"
+                slot="end"
+                size="large"
+                icon={eyeOutline}
+              ></IonIcon>
             </button>
           </div>
           <div className="speech-end-button-container">
             <button className="speech-end-button" onClick={endTest}>
               <h1>End Test</h1>
-              <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
+              <IonIcon
+                className="eye"
+                slot="end"
+                size="large"
+                icon={eyeOutline}
+              ></IonIcon>
             </button>
           </div>
           <div className="shape-container">
-          <div className="shape-row">
-            {icons.slice(0, 3).map((obj, index) => (
-              <button key={index} data-keyword={obj.keyword} onClick={() => handleIconClick(obj.keyword)}>
-              {obj.icon}
-            </button>
-            ))}
-          </div>
-          <div className="shape-row">
-            {icons.slice(3,6).map((obj, index) => (
-              <button key={index} data-keyword={obj.keyword} onClick={() => handleIconClick(obj.keyword)}>
-              {obj.icon}
-            </button>
-            ))}
-          </div>
-          <div className="shape-row">
-            {icons.slice(6).map((obj, index) => (
-              <button key={index} data-keyword={obj.keyword} onClick={() => handleIconClick(obj.keyword)}>
-              {obj.icon}
-            </button>
-            ))}
+            <div className="shape-row">
+              {icons.slice(0, 3).map((obj, index) => (
+                <button
+                  key={index}
+                  data-keyword={obj.keyword}
+                  onClick={() => handleIconClick(obj.keyword)}
+                >
+                  {obj.icon}
+                </button>
+              ))}
+            </div>
+            <div className="shape-row">
+              {icons.slice(3, 6).map((obj, index) => (
+                <button
+                  key={index}
+                  data-keyword={obj.keyword}
+                  onClick={() => handleIconClick(obj.keyword)}
+                >
+                  {obj.icon}
+                </button>
+              ))}
+            </div>
+            <div className="shape-row">
+              {icons.slice(6).map((obj, index) => (
+                <button
+                  key={index}
+                  data-keyword={obj.keyword}
+                  onClick={() => handleIconClick(obj.keyword)}
+                >
+                  {obj.icon}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
       </IonContent>
     </IonPage>
   );

@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import { eyeOutline } from "ionicons/icons";
 import "./LetterTest.css";
 import Button from "../components/Button/Button";
+import Pretest2 from "../components/PreTest2";
 
 interface LocationState {
   testMode?: string;
@@ -212,6 +213,8 @@ const LetterTest2: React.FC = () => {
     <IonPage>
       <Header headerText="Vision Test" />
       <IonContent className="ion-padding">
+      <Pretest2/>
+
         <IonText style={{ textAlign: "center" }}>
           <h1 style={{fontWeight: "bold"}}>Letter Test: {buttonPressCount}/7</h1>
         </IonText>

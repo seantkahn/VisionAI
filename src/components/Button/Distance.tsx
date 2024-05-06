@@ -1,10 +1,9 @@
 import * as vision from "@mediapipe/tasks-vision";
 import Webcam from "react-webcam";
 import React, { useRef, useEffect, useState } from "react";
-import "./Pretest.css";
+import "./Distance.css";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { Button } from "react-bootstrap";
 
 const stopWebcam = () => {
   const streams = document.querySelectorAll("video").forEach((videoElement) => {
@@ -19,7 +18,7 @@ interface LocationState {
   eyeToExamine?: string;
 }
 
-const PreTest: React.FC = () => {
+const Distance: React.FC = () => {
   const [faceLandmarker, setFaceLandmarker] = useState<any>(null);
   const [webcamRunning, setWebcamRunning] = useState<boolean>(false);
   const [distance, setDistance] = useState<number | null>(null);
@@ -216,23 +215,22 @@ const PreTest: React.FC = () => {
 
   return (
     <main className="PreTest" onClick={enableCam}>
-      <Webcam ref={webcamRef} className="webcam" mirrored={true} autoPlay />
+      <Webcam
+        ref={webcamRef}
+        className="webcam2"
+        mirrored={true}
+        autoPlay
+        style={{ top: "0", left: "0" }}
+      />
       <canvas ref={canvasRef} className="output_canvas" />
       <div className="distance-container">
-        <p className="distance-text">Distance</p>
         <div className="distance-number">
           {" "}
           {distance ? `${distance.toFixed(0)}` : ""}
         </div>
       </div>
-      <div className="continue-button-div">
-        <Button className="continue-button" onClick={continueToExam}>
-          {" "}
-          Continue
-        </Button>
-      </div>
     </main>
   );
 };
 
-export default PreTest;
+export default Distance;
