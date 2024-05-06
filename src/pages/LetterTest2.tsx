@@ -172,7 +172,12 @@ const LetterTest2: React.FC = () => {
   };
 //if the user made it to 20/20 with a diopter correction, recommended diopter to be reduced by one to be conservative with the lens correction. 
 //If they didnt make it to 20/20, pass the same diopterValue of the correction as the proper diopter value
-
+useEffect(() => {
+  const allIconsAreGreen = randomString.every((obj) => obj.recognized);
+  if (allIconsAreGreen) {
+    updateRandomIcons();
+  }
+}, [randomString]);
   const endTest = () => {
     setButtonPressCount(0);
     const eyeStrengthIndex = visualAcuityIndex;  // Get index of the current eye strength

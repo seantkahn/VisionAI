@@ -182,6 +182,13 @@ const ShapeTest: React.FC = () => {
       setRandomString(generateRandomString(newCount));
     }
   };
+  
+  useEffect(() => {
+    const allIconsAreGreen = randomString.every((obj) => obj.recognized);
+    if (allIconsAreGreen) {
+      updateRandomIcons();
+    }
+  }, [randomString]);
 
   const endTest = () => {
     setButtonPressCount(0);
