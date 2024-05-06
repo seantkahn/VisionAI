@@ -83,7 +83,7 @@ const Test: React.FC = () => {
   const steps = [
     {
       label: 'Distance',
-      description: `Hold your face in front of your webcam and tap/click the screen once or twice for live distance calculations.`,
+      description: `Hold your face in front of your webcam and tap/click the black box once, or twice for live distance calculations.`,
       icon: <MdOutlinePhoneIphone />,
     },
     {
@@ -99,7 +99,7 @@ const Test: React.FC = () => {
     },
     {
       label: 'Say or press the letter that appears',
-      description: `You will be prompted with several letters. Say or Tap the letter and wait for the results.`,
+      description: `You will be prompted with several letters. Say or Tap the letter and wait for the results. Click next to move to the next line.`,
       icon: <div><RiKakaoTalkFill /><PiHandTapBold /></div>,
     },
     {

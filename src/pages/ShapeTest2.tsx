@@ -270,17 +270,24 @@ const ShapeTest2: React.FC = () => {
           </div>
           <div className="shape-container">
           <div className="shape-row">
-            {icons.slice(0, 5).map((obj, index) => (
-              <button key={index} onClick={() => handleIconClick(obj.keyword)}>
-                {obj.icon}
-              </button>
+            {icons.slice(0, 3).map((obj, index) => (
+              <button key={index} data-keyword={obj.keyword} onClick={() => handleIconClick(obj.keyword)}>
+              {obj.icon}
+            </button>
             ))}
           </div>
           <div className="shape-row">
-            {icons.slice(5).map((obj, index) => (
-              <button key={index} onClick={() => handleIconClick(obj.keyword)}>
-                {obj.icon}
-              </button>
+            {icons.slice(3,6).map((obj, index) => (
+              <button key={index} data-keyword={obj.keyword} onClick={() => handleIconClick(obj.keyword)}>
+              {obj.icon}
+            </button>
+            ))}
+          </div>
+          <div className="shape-row">
+            {icons.slice(6).map((obj, index) => (
+              <button key={index} data-keyword={obj.keyword} onClick={() => handleIconClick(obj.keyword)}>
+              {obj.icon}
+            </button>
             ))}
           </div>
         </div>
