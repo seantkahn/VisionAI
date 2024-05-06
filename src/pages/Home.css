@@ -1,48 +1,17 @@
-
-#container {
-  text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.container {
+  --ion-background-color: linear-gradient(
+    0deg,
+    rgba(0, 136, 152, 1) 0%,
+    rgba(235, 253, 255, 1) 100%,
+    rgba(131, 58, 180, 1) 100%
+  );
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-  color: #8c8c8c;
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
-body{
-  --ion-background-color:linear-gradient(0deg, rgba(0,136,152,1) 0%, rgba(235,253,255,1) 100%, rgba(131,58,180,1) 100%);
-  
-  }
-  /* 
-  linear-gradient(to right, #87CEFA, #00BFFF); 
-  color: #333;
-  linear-gradient(0deg, rgba(0,136,152,1) 0%, rgba(235,253,255,1) 100%, rgba(131,58,180,1) 100%);
-  linear-gradient(0deg, rgba(0,136,152,1) 0%, rgba(182,255,221,1) 100%, rgba(131,58,180,1) 100%);
-  linear-gradient(180deg, rgba(0,136,152,1) 0%, rgba(235,253,255,1) 100%, rgba(131,58,180,1) 100%);
-  linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(139,14,255,1) 100%);
-   linear-gradient(0deg, rgba(139,14,255,1) 0%, rgba(34,193,195,1) 100%); 
-  linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(179,96,255,1) 100%);
-  } */
 .welcome-title {
   margin-top: 10vh;
   font-weight: 700;
-  font-size: 3vw;
-    text-align: center;
-
+  font-size: 6vw;
+  text-align: center;
 }
 
 .app-description {
@@ -52,15 +21,14 @@ body{
   color: #555555;
   text-align: center;
   font-size: 2vw;
-
 }
 @media (max-width: 600px) {
   .welcome-title {
-      font-size: 12vw;
+    font-size: 12vw;
   }
   .app-description {
     padding-left: 10vw;
     padding-right: 10vw;
     font-size: 5.2vw;
-}
+  }
 }
