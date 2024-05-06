@@ -45,7 +45,7 @@ const About: React.FC = () => {
                 <h2 style={{fontWeight: "bold", textAlign: "center", textDecoration: "underline", fontStyle: "normal"}}>Created for:</h2>
                 <h2 style={{textAlign: "center"}}>Dr. Deep Parikh</h2>
                 <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    <img src="../../public/the doc.jpg"></img>
+                    <img src="the_doc.jpg"></img>
                 </div>
             </div>
             <div>
