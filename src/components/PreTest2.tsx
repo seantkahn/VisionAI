@@ -63,6 +63,19 @@ const PreTest2: React.FC = () => {
     return distanceFromCameraMm;
   }
   useEffect(() => {
+    const setupWebcam = async () => {
+      const constraints = { video: true };
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia(constraints);
+        if (webcamRef.current && webcamRef.current.video) {
+          webcamRef.current.video.srcObject = stream;
+          webcamRef.current.video.play();
+        }
+      } catch (error) {
+        console.error('Error setting up webcam:', error);
+      }
+    };
+
     const loadFaceLandmarker = async () => {
       const { FaceLandmarker, FilesetResolver } = vision;
       const filesetResolver = await FilesetResolver.forVisionTasks(
@@ -78,6 +91,8 @@ const PreTest2: React.FC = () => {
         numFaces: 1
       });
       setFaceLandmarker(newFaceLandmarker);
+      await setupWebcam();
+      setWebcamRunning(true);
     };
 
     loadFaceLandmarker();
@@ -90,12 +105,17 @@ const PreTest2: React.FC = () => {
           tracks.forEach(track => track.stop()); // Stop each track
         }
       }
-  
       // Cancel any ongoing animation frame requests
       setWebcamRunning(false); // This should stop the predictWebcam loop
     };
   }, []);
-
+  const onCanvasClick = () => {
+    if (webcamRunning && faceLandmarker) {
+      predictWebcam();
+    } else {
+      console.log("System is not ready yet.");
+    }
+  };
   const onWebcamStart = () => {
     if (webcamRunning) {
         // console.log('Trying to call predictwebcam from onwebcamstart');
@@ -105,11 +125,17 @@ const PreTest2: React.FC = () => {
   };
   // Enable webcam
   const enableCam = () => {
-    predictWebcam();
 
     if (!faceLandmarker) {
-      // console.log("Wait! FaceLandmarker not loaded yet.");
+      console.log("Wait! FaceLandmarker not loaded yet.");
       return;
+    }  
+    if (!webcamRunning) {
+      setWebcamRunning(true);
+      predictWebcam();  // Initiate webcam prediction as soon as the webcam is set to run
+    }
+    else{
+      predictWebcam();
     }
 
     setWebcamRunning(!webcamRunning);
@@ -209,7 +235,7 @@ const PreTest2: React.FC = () => {
 
 
   return (
-    <div className="PreTest2" onClick={enableCam}>
+    <div className="PreTest2" onClick={onCanvasClick}>
       <Webcam ref={webcamRef} className="webcam2" mirrored={true} autoPlay style={{top: "0", left: "0"}}/>
       <div className="camera-container2">
         <div className="distance-box2">
