@@ -108,10 +108,11 @@ Button {
   width: auto;
   height: 50px;
   background-color: #000;
+
 }
 
 .camera-container2 {
-
+text-align:center;
 }
 
 .webcam2 {

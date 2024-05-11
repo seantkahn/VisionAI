@@ -19,6 +19,8 @@ import { useLocation } from "react-router-dom";
 const PreTest2: React.FC = () => {
   const [faceLandmarker, setFaceLandmarker] = useState<any>(null);
   const [webcamRunning, setWebcamRunning] = useState<boolean>(false);
+  const [message, setMessage] = useState("Tap box for live distance"); // Message to display in the distance-box
+
   const webcamRef = useRef<Webcam>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const runningMode: "IMAGE" | "VIDEO" = "VIDEO";
@@ -111,6 +113,7 @@ const PreTest2: React.FC = () => {
   }, []);
   const onCanvasClick = () => {
     if (webcamRunning && faceLandmarker) {
+      setMessage("");  // Clear the message upon canvas click
       predictWebcam();
     } else {
       console.log("System is not ready yet.");
@@ -241,8 +244,7 @@ const PreTest2: React.FC = () => {
         <div className="distance-box2">
           <canvas ref={canvasRef} className="output_canvas2" />
         </div>
-        
-        
+              {message}
       </div>
       
     </div>
