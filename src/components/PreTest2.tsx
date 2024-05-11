@@ -19,7 +19,7 @@ import { useLocation } from "react-router-dom";
 const PreTest2: React.FC = () => {
   const [faceLandmarker, setFaceLandmarker] = useState<any>(null);
   const [webcamRunning, setWebcamRunning] = useState<boolean>(false);
-  const [message, setMessage] = useState("Tap box for live distance"); // Message to display in the distance-box
+  const [message, setMessage] = useState("Tap for live distance"); // Message to display in the distance-box
 
   const webcamRef = useRef<Webcam>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -241,7 +241,7 @@ const PreTest2: React.FC = () => {
     <div className="PreTest2" onClick={onCanvasClick}>
       <Webcam ref={webcamRef} className="webcam2" mirrored={true} autoPlay style={{top: "0", left: "0"}}/>
       <div className="camera-container2">
-      {message}
+      <div className="message-overlay">{message}</div>  {/* Message overlay */}
 
         <div className="distance-box2">
           <canvas ref={canvasRef} className="output_canvas2" />
