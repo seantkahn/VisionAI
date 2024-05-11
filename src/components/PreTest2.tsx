@@ -17,6 +17,8 @@ import { useLocation } from "react-router-dom";
 const PreTest2: React.FC = () => {
   const [faceLandmarker, setFaceLandmarker] = useState<any>(null);
   const [webcamRunning, setWebcamRunning] = useState<boolean>(false);
+  const [displayMessage, setDisplayMessage] = useState("Tap for distance");
+
   const webcamRef = useRef<Webcam>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const runningMode: "IMAGE" | "VIDEO" = "VIDEO";
@@ -109,11 +111,15 @@ const PreTest2: React.FC = () => {
   }, []);
   const onCanvasClick = () => {
     if (webcamRunning && faceLandmarker) {
-      predictWebcam();
+        if (displayMessage === "Tap for distance") {
+            setDisplayMessage(""); // Clear the message to trigger distance calculation
+            predictWebcam(); // This will now execute the distance calculation branch
+        }
     } else {
-      console.log("System is not ready yet.");
+        console.log("System is not ready yet.");
     }
-  };
+};
+
   const onWebcamStart = () => {
     if (webcamRunning) {
         // console.log('Trying to call predictwebcam from onwebcamstart');
@@ -150,7 +156,7 @@ const PreTest2: React.FC = () => {
 
   const predictWebcam = async () => {
     // console.log('predictWebcam called');
-
+const knownPupillaryDistanceMm = 63; // The known distance between the pupils in mm
     if (!faceLandmarker || !webcamRef.current || !canvasRef.current) {
       return;
     }
@@ -164,68 +170,42 @@ const PreTest2: React.FC = () => {
     if (!canvasCtx) {
       return;
     }
-  
-    const maxWidth = Math.min(window.innerWidth, 340);
-    const ratio = videoElement.videoHeight / videoElement.videoWidth;
-  
-    canvas.style.width = `${maxWidth}px`;
-    canvas.style.height = `${maxWidth * ratio}px`;
-  
-    canvas.width = maxWidth;
-    canvas.height = maxWidth * ratio;
-  
-    try {
-        // console.log('Trying face landmark detection');
+    canvasCtx.clearRect(0, 0, canvas.width, canvas.height); // Clear previous drawings
 
-      let results = await faceLandmarker.detectForVideo(videoElement, performance.now());
-      // console.log('Detection results:', results);
-      // console.log('Face landmarks:', results.faceLandmarks[0]);
-      // console.log('Detection results:', results);
+    if (displayMessage === "Tap for distance") {
+      // Display initial message
+      canvasCtx.font = 'bold 30px Arial';
+      canvasCtx.fillStyle = 'white';
+      canvasCtx.textAlign = 'center';
+      canvasCtx.textBaseline = 'middle';
+      canvasCtx.fillText(displayMessage, canvas.width / 2, canvas.height / 2);
+    } else {
+      try {
+        let results = await faceLandmarker.detectForVideo(videoElement, performance.now());
+        if (results.faceLandmarks) {
+          let pointLeft = { x: results.faceLandmarks[0][468].x, y: results.faceLandmarks[0][468].y };
+          let pointRight = { x: results.faceLandmarks[0][473].x, y: results.faceLandmarks[0][473].y };
+          let pixelDistanceBetweenEyes = calculatePixelDistance(pointLeft.x, pointLeft.y, pointRight.x, pointRight.y);
+          let distanceFromWebcamMm = (focalLengthPixels * knownPupillaryDistanceMm) / pixelDistanceBetweenEyes;
+          let distanceFromWebcamInches = distanceFromWebcamMm / 25.4;
 
-      if (results.faceLandmarks) {
-        let landmarks = results.faceLandmarks;
-        for (landmarks in results.faceLandmarks) {
-
-        // console.log('Face landmarks:', results.faceLandmarks[0]);
-        // console.log('Specific landmarks:', results.faceLandmarks[0][468], results.faceLandmarks[0][473]);
-        // console.log('Landmarks length:', landmarks.length);
-        // console.log('Landmark 468:', results.faceLandmarks[0][468]);
-        // console.log('Landmark 473:', results.faceLandmarks[0][473]);
-        let pointLeft = { x: results.faceLandmarks[0][468].x, y: results.faceLandmarks[0][468].y }; // Left eye keypoint
-        let pointRight = { x: results.faceLandmarks[0][473].x, y: results.faceLandmarks[0][473].y }; // Right eye keypoint
-  
-        const webcamFOV = 60; // Approximate field of view of the webcam
-        const knownPupillaryDistanceMm = 63; // Average pupillary distance in millimeters
-        let pixelDistanceBetweenEyes = calculatePixelDistance(
-          pointLeft.x, pointLeft.y,
-          pointRight.x, pointRight.y
-        );
-  
-        const focalLengthPixels = 0.78;
-        let distanceFromWebcamMm = (focalLengthPixels * knownPupillaryDistanceMm) / pixelDistanceBetweenEyes;
-        let distanceFromWebcamInches = distanceFromWebcamMm / 25.4;
-        // console.log(`Distance from webcam: ${distanceFromWebcamInches.toFixed(2)} inches`);
-          try{
-            canvasCtx.font = 'bold 30px Arial';
-            canvasCtx.fillStyle = 'white';
-            canvasCtx.textAlign = 'center'; // Center horizontally
-            canvasCtx.textBaseline = 'middle'; // Center vertically
-            canvasCtx.fillText(`Distance: ${distanceFromWebcamInches.toFixed(2)} inches`, canvas.width / 2, canvas.height / 2);
-                      }
-          catch(e){
-            // console.log("error drawing distance on canvas",e);
-          }
-        // console.log(`Distance from webcam: ${distanceFromWebcamInches.toFixed(2)} inches`);
+          // Draw the calculated distance
+          canvasCtx.font = 'bold 30px Arial';
+          canvasCtx.fillStyle = 'white';
+          canvasCtx.textAlign = 'center';
+          canvasCtx.textBaseline = 'middle';
+          canvasCtx.fillText(`Distance: ${distanceFromWebcamInches.toFixed(2)} inches`, canvas.width / 2, canvas.height / 2);
+        }
+      } catch (error) {
+        console.error("Error in face landmark detection:", error);
       }
-    }
-    } catch (error) {
-      // console.error("error in predictWebcam: ", error);
     }
 
     if (webcamRunning) {
       window.requestAnimationFrame(predictWebcam);
     }
   };
+
   
   const calculatePixelDistance = (x1: number, y1: number, x2: number, y2: number) => {
     return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
