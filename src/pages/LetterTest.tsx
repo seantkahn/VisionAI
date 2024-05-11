@@ -16,9 +16,10 @@ interface LocationState {
 
 function getDynamicFontSize(physicalSizeMm: number) {
   function getDevicePixelRatio() {
-    if (window.screen.systemXDPI !== undefined && window.screen.logicalXDPI !== undefined && window.screen.systemXDPI > window.screen.logicalXDPI) {
-      return window.screen.systemXDPI / window.screen.logicalXDPI;
-    } else if (window.devicePixelRatio !== undefined) {
+    // if (window.screen.systemXDPI !== undefined && window.screen.logicalXDPI !== undefined && window.screen.systemXDPI > window.screen.logicalXDPI) {
+    //   return window.screen.systemXDPI / window.screen.logicalXDPI;
+    // } else
+    if (window.devicePixelRatio !== undefined) {
       return window.devicePixelRatio;
     }
     return 1;
@@ -229,9 +230,7 @@ const LetterTest: React.FC = () => {
       <Header headerText="Vision Test" />
       <IonContent className="ion-padding">
       <Pretest2/>
-        <IonText style={{ textAlign: "center" }}>
-          <h1 style={{fontWeight: "bold"}}>Letter Test: {buttonPressCount}/7</h1>
-        </IonText>
+
         <div className="letter-test-camera">
           
         </div>
@@ -312,6 +311,9 @@ const LetterTest: React.FC = () => {
             </button>
             ))}
           </div>
+          <IonText style={{ textAlign: "center" }}>
+          <h1 style={{fontWeight: "bold"}}>Letter Test: {buttonPressCount}/7</h1>
+        </IonText>
         </div>
       </IonContent>
     </IonPage>

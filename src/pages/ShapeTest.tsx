@@ -23,8 +23,8 @@ interface LocationState {
 
 function getDynamicFontSize(physicalSizeMm: any) {
   function getDevicePixelRatio() {
-    if (window.screen.systemXDPI !== undefined && window.screen.logicalXDPI !== undefined && window.screen.systemXDPI > window.screen.logicalXDPI) {
-      return window.screen.systemXDPI / window.screen.logicalXDPI;} 
+    // if (window.screen.systemXDPI !== undefined && window.screen.logicalXDPI !== undefined && window.screen.systemXDPI > window.screen.logicalXDPI) {
+    //   return window.screen.systemXDPI / window.screen.logicalXDPI;} 
     if (window.devicePixelRatio !== undefined) {
       return window.devicePixelRatio;
     }
@@ -250,9 +250,7 @@ const ShapeTest: React.FC = () => {
       <Header headerText="Vision Test" />
       <IonContent className="ion-padding">
       <PreTest2/>
-        <IonText style={{ textAlign: "center" }}>
-          <h1 style={{fontWeight: "bold"}}>Shape Test: {buttonPressCount}/7</h1>
-        </IonText>
+
         <IonText className="testIcon" style={{ fontSize: `${fontSizePx}px` }}>
           <div className="icons-div">
             {randomString.map((obj, index) => (
@@ -315,6 +313,9 @@ const ShapeTest: React.FC = () => {
             ))}
           </div>
         </div>
+        <IonText style={{ textAlign: "center" }}>
+          <h1 style={{fontWeight: "bold"}}>Shape Test: {buttonPressCount}/7</h1>
+        </IonText>
       </div>
       </IonContent>
     </IonPage>

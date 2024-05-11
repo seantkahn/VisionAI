@@ -241,10 +241,12 @@ const PreTest2: React.FC = () => {
     <div className="PreTest2" onClick={onCanvasClick}>
       <Webcam ref={webcamRef} className="webcam2" mirrored={true} autoPlay style={{top: "0", left: "0"}}/>
       <div className="camera-container2">
+      {message}
+
         <div className="distance-box2">
           <canvas ref={canvasRef} className="output_canvas2" />
         </div>
-              {message}
+
       </div>
       
     </div>
