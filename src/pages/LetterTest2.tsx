@@ -5,7 +5,6 @@ import Header from "../components/Header/Header";
 import { useLocation } from "react-router-dom";
 import { eyeOutline } from "ionicons/icons";
 import "./LetterTest.css";
-import Button from "../components/Button/Button";
 import Pretest2 from "../components/PreTest2";
 
 interface LocationState {

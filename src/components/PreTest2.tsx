@@ -1,5 +1,3 @@
-import { FaceMesh } from "@mediapipe/face_mesh";
-import { Camera } from "@mediapipe/camera_utils";
 import * as tf from "@tensorflow/tfjs";
 import { Category, DrawingUtils, FaceLandmarker, FilesetResolver } from '@mediapipe/tasks-vision';
 import * as vision from "@mediapipe/tasks-vision";

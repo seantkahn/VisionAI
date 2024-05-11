@@ -1,5 +1,3 @@
-import { FaceMesh } from "@mediapipe/face_mesh";
-import { Camera } from "@mediapipe/camera_utils";
 import * as tf from "@tensorflow/tfjs";
 import { Category, DrawingUtils, FaceLandmarker, FilesetResolver } from '@mediapipe/tasks-vision';
 import * as vision from "@mediapipe/tasks-vision";
@@ -10,7 +8,6 @@ import { useHistory } from "react-router-dom";
 import "./Pretest.css";
 import { IonPage, IonContent, IonButton, IonIcon } from "@ionic/react";
 import { eyeOutline } from "ionicons/icons";
-import SampleTest from "../components/PreTest";
 import Header from "../components/Header/Header";
 import Button from "../components/Button/Button";
 import { useLocation } from "react-router-dom";

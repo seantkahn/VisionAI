@@ -11,7 +11,6 @@ import { FaCat, FaHorse, FaCarSide } from "react-icons/fa";
 import { FaSailboat } from "react-icons/fa6";
 import { WiTrain } from "react-icons/wi";
 import { eyeOutline } from "ionicons/icons";
-import Button from "../components/Button/Button";
 import "./ShapeTest.css";
 import PreTest2 from "../components/PreTest2";
 
