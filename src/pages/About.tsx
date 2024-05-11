@@ -42,11 +42,11 @@ const About: React.FC = () => {
                 <h2 style={{textAlign: "center"}}>Pace University<br />CS389 Software Engineering</h2>
             </div>
             <div>
-                <h2 style={{fontWeight: "bold", textAlign: "center", textDecoration: "underline", fontStyle: "normal"}}>Created for</h2>
-                <h2 style={{textAlign: "center"}}>Dr. Deep Parikh</h2>
-                <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    <img src="the_doc.jpg"></img>
-                </div>
+              <h2 style={{fontWeight: "bold", textAlign: "center", textDecoration: "underline", fontStyle: "normal"}}>Created for</h2>
+              <h2 style={{textAlign: "center"}}>Dr. Deep Parikh</h2>
+              <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <img src="the_doc.jpg" alt="Dr. Deep Parikh"></img>
+              </div>
             </div>
             <div>
                 <h2 style={{fontWeight: "bold", textAlign: "center", textDecoration: "underline", fontStyle: "normal"}}>Vision AI Team</h2>
