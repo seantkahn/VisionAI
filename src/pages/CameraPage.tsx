@@ -51,7 +51,7 @@ useEffect(() => {
   };
   return (
     <IonPage>
-      <Header headerText="Tap Video Output for Distance" />
+      <Header headerText="Tap Video Output for Live Distance" />
       <IonContent fullscreen>
         <div>
           <PreTest />

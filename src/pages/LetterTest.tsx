@@ -16,9 +16,10 @@ interface LocationState {
 
 function getDynamicFontSize(physicalSizeMm: number) {
   function getDevicePixelRatio() {
-    if (window.screen.systemXDPI !== undefined && window.screen.logicalXDPI !== undefined && window.screen.systemXDPI > window.screen.logicalXDPI) {
-      return window.screen.systemXDPI / window.screen.logicalXDPI;
-    } else if (window.devicePixelRatio !== undefined) {
+    // if (window.screen.systemXDPI !== undefined && window.screen.logicalXDPI !== undefined && window.screen.systemXDPI > window.screen.logicalXDPI) {
+    //   return window.screen.systemXDPI / window.screen.logicalXDPI;
+    // } else 
+    if (window.devicePixelRatio !== undefined) {
       return window.devicePixelRatio;
     }
     return 1;
